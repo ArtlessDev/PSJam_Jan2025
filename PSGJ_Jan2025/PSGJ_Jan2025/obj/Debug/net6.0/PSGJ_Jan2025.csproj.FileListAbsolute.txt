@@ -27,3 +27,5 @@ C:\Code\PSJam_Jan2025\PSGJ_Jan2025\PSGJ_Jan2025\obj\Debug\net6.0\PSGJ_Jan2025.ge
 C:\Code\PSJam_Jan2025\PSGJ_Jan2025\PSGJ_Jan2025\obj\Debug\net6.0\ref\PSGJ_Jan2025.dll
 C:\Code\PSJam_Jan2025\PSGJ_Jan2025\PSGJ_Jan2025\bin\Debug\net6.0\Content\button.xnb
 C:\Code\PSJam_Jan2025\PSGJ_Jan2025\PSGJ_Jan2025\bin\Debug\net6.0\Content\blank-button.xnb
+C:\Code\PSJam_Jan2025\PSGJ_Jan2025\PSGJ_Jan2025\bin\Debug\net6.0\Content\soldier.xnb
+C:\Code\PSJam_Jan2025\PSGJ_Jan2025\PSGJ_Jan2025\bin\Debug\net6.0\Content\zilla.xnb

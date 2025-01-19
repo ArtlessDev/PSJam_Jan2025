@@ -1,24 +1,47 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace PSGJ_Jan2025
 {
     public static class GameMaster
     {
-        public static int CurrentPhase = 0;
+        public static GamePhases CurrentPhase = 0;
         public static bool AbleToChangePhases = true;
 
-        public static void ChangePhase()
+        public static async void ChangePhase()
         {
-            if (CurrentPhase == 4)
+            if (CurrentPhase == GamePhases.Resolution)
             {
                 CurrentPhase = 0;
             }
             else 
             {
+                switch (CurrentPhase)
+                {
+                    case GamePhases.EnemySpawn:
+                        Debug.WriteLine(GamePhases.EnemySpawn);
+                        await SpawnEnemies();
+                        break;
+                    case GamePhases.PlayerTurn:
+                        Debug.WriteLine(GamePhases.PlayerTurn);
+                        await PlayerTurn();
+                        break;
+                    case GamePhases.EnemyTurn:
+                        Debug.WriteLine(GamePhases.EnemyTurn);
+                        await EnemyTurn();
+                        break;
+                    case GamePhases.Resolution:
+                        Debug.WriteLine(GamePhases.Resolution);
+                        await ResolveTurn();
+                        break;
+                }
+
                 CurrentPhase++;
             }
 
@@ -30,13 +53,47 @@ namespace PSGJ_Jan2025
             AbleToChangePhases = true;
         }
 
-        public enum GamePhases
+        public static async Task<Task> SpawnEnemies()
         {
-            Start,
-            EnemySpawn,
-            PlayerTurn,
-            EnemyTurn,
-            Resolution,
+            return Task.Factory.StartNew(() =>
+            {
+                Debug.WriteLine("In phase spawn enemies");
+                Thread.Sleep(2000);
+            });
         }
+        public static async Task<Task> PlayerTurn()
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                Debug.WriteLine("In phase player turn");
+                Thread.Sleep(2000);
+            });
+        }
+        public static async Task<Task> EnemyTurn()
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                Debug.WriteLine("In phase enemy turn");
+                Thread.Sleep(2000);
+            });
+        }
+        public static async Task<Task> ResolveTurn()
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                Debug.WriteLine("In phase resolve turn");
+                Thread.Sleep(2000);
+            });
+        }
+
+
+    }
+    public enum GamePhases
+    {
+        Start,
+        EnemySpawn,
+        PlayerTurn,
+        EnemyTurn,
+        Resolution,
     }
 }

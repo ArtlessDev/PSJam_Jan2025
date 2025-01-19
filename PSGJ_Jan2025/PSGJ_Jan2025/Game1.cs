@@ -11,8 +11,10 @@ namespace PSGJ_Jan2025
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private CustomGameUI passTurnButton, moveOne;
-        Texture2D _texture;
-        
+        Character zilla;
+        NPC enemyUnit;
+
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -43,12 +45,17 @@ namespace PSGJ_Jan2025
 
             moveOne = new CustomGameUI();
             moveOne.Position = new(320, 480);
-            //moveOne.onClick  = GameMaster.
             moveOne.Rect = new(new Point(320, 480), moveOne.Size);
             moveOne.Texture = Content.Load<Texture2D>("blank-button");
             
-
+            zilla = new Character(CharacterType.Player);
+            zilla.Rect = new(128, 128, 128, 128);
+            zilla.Texture = Content.Load<Texture2D>("zilla");
             // TODO: use this.Content to load your game content here
+
+            enemyUnit = new NPC();
+            enemyUnit.Rect = new(128, 128, 128, 128);
+            enemyUnit.Texture = Content.Load<Texture2D>("zilla");
         }
 
         protected override void Update(GameTime gameTime)
@@ -63,15 +70,7 @@ namespace PSGJ_Jan2025
             if (mouseState.LeftButton == ButtonState.Pressed && mouseRect.Intersects(passTurnButton.Rect) && GameMaster.AbleToChangePhases == true)
             {
                 GameMaster.ChangePhase();
-                Debug.WriteLine("phase: " + GameMaster.CurrentPhase);
-                //Debug.WriteLine("can change phases: " + GameMaster.AbleToChangePhases);
-
             }
-
-            //if (moveOne.onClick != null && onClick.GetInvocationList().Length > 0)
-            //{
-            //    OnClick(new EventArgs());
-            //}
 
             if (mouseState.LeftButton == ButtonState.Pressed && mouseRect.Intersects(moveOne.Rect))
             {
@@ -90,9 +89,9 @@ namespace PSGJ_Jan2025
 
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
-            //_spriteBatch.Draw(passTurnButton.Texture, new Vector2(0, 0), Color.White);
             _spriteBatch.Draw(passTurnButton.Texture, passTurnButton.Position, Color.White);
             _spriteBatch.Draw(moveOne.Texture, moveOne.Position, Color.White);
+            _spriteBatch.Draw(zilla.Texture, zilla.Rect, Color.White);
 
             _spriteBatch.End();
 
