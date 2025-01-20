@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
@@ -15,6 +17,7 @@ namespace PSGJ_Jan2025
         Texture2D texture;
         Vector2 position;
         Point size;
+        Color textureColor;
         public delegate void ButtonEventHandler(object sender, EventArgs e);
         public event EventHandler<EventArgs> onClick;
 
@@ -24,6 +27,7 @@ namespace PSGJ_Jan2025
             size = new Point(128, 72);
             rect = new Rectangle(new Point((int)position.X, (int)position.Y), size);
             texture = null;
+            textureColor = Color.White;
         }
 
         public Rectangle Rect
@@ -46,6 +50,25 @@ namespace PSGJ_Jan2025
         {
             get { return size; }
             set { size = value; }
+        }
+        public Color TextureColor
+        {
+            get { return textureColor; }
+            set{ textureColor = value; }
+        }
+
+        public void changeColor(Rectangle mouseRect, ContentManager Content)
+        {
+            if (mouseRect.Intersects(this.Rect))
+            {
+                //this.Texture = Content.Load<Texture2D>("zilla");
+                this.TextureColor = Color.Red;
+            }
+            else
+            {
+                //this.Texture = Content.Load<Texture2D>("blank-button");
+                this.TextureColor = Color.White;
+            }
         }
     }
 }

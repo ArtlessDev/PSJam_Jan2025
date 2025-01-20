@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace PSGJ_Jan2025
@@ -10,10 +11,10 @@ namespace PSGJ_Jan2025
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        private CustomGameUI passTurnButton, moveOne;
+        private CustomGameUI passTurnButton, moveOne, moveTwo, moveThree, moveFour;
         Character zilla;
         NPC enemyUnit;
-
+        List<CustomGameUI> actions;
 
         public Game1()
         {
@@ -38,24 +39,48 @@ namespace PSGJ_Jan2025
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            //this will be the guard function
             passTurnButton = new CustomGameUI();
-            passTurnButton.Position = new(640, 480);
-            passTurnButton.Rect = new(new Point(640, 480), passTurnButton.Size);
+            passTurnButton.Position = new(560, 480);
+            passTurnButton.Rect = new(new Point(560, 480), passTurnButton.Size);
             passTurnButton.Texture = Content.Load<Texture2D>("button");
 
             moveOne = new CustomGameUI();
-            moveOne.Position = new(320, 480);
-            moveOne.Rect = new(new Point(320, 480), moveOne.Size);
+            moveOne.Position = new(160, 480);
+            moveOne.Rect = new(new Point(160, 480), moveOne.Size);
             moveOne.Texture = Content.Load<Texture2D>("blank-button");
-            
+
+            moveTwo = new CustomGameUI();
+            moveTwo.Position = new(320, 480);
+            moveTwo.Rect = new(new Point(320, 480), moveTwo.Size);
+            moveTwo.Texture = Content.Load<Texture2D>("blank-button");
+
+            moveThree = new CustomGameUI();
+            moveThree.Position = new(160, 560);
+            moveThree.Rect = new(new Point(160, 560), moveThree.Size);
+            moveThree.Texture = Content.Load<Texture2D>("blank-button");
+
+            moveFour = new CustomGameUI();
+            moveFour.Position = new(320, 560);
+            moveFour.Rect = new(new Point(320, 560), moveFour.Size);
+            moveFour.Texture = Content.Load<Texture2D>("blank-button");
+
             zilla = new Character(CharacterType.Player);
             zilla.Rect = new(128, 128, 128, 128);
             zilla.Texture = Content.Load<Texture2D>("zilla");
             // TODO: use this.Content to load your game content here
 
             enemyUnit = new NPC();
-            enemyUnit.Rect = new(128, 128, 128, 128);
+            enemyUnit.Rect = new(64, 64, 64, 64);
             enemyUnit.Texture = Content.Load<Texture2D>("zilla");
+
+            actions = new List<CustomGameUI>();
+
+            actions.Add(moveOne);
+            actions.Add(moveTwo);
+            actions.Add(moveThree);
+            actions.Add(moveFour);
+            actions.Add(passTurnButton);
         }
 
         protected override void Update(GameTime gameTime)
@@ -78,6 +103,11 @@ namespace PSGJ_Jan2025
                 Debug.WriteLine("can change phases: " + GameMaster.AbleToChangePhases);
             }
 
+            foreach (var action in actions)
+            {
+                action.changeColor(mouseRect, Content);
+            }
+
             base.Update(gameTime);
         }
 
@@ -89,9 +119,14 @@ namespace PSGJ_Jan2025
 
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
-            _spriteBatch.Draw(passTurnButton.Texture, passTurnButton.Position, Color.White);
-            _spriteBatch.Draw(moveOne.Texture, moveOne.Position, Color.White);
             _spriteBatch.Draw(zilla.Texture, zilla.Rect, Color.White);
+
+            _spriteBatch.Draw(passTurnButton.Texture, passTurnButton.Position, passTurnButton.TextureColor);
+            _spriteBatch.Draw(moveOne.Texture, moveOne.Position, moveOne.TextureColor);
+            _spriteBatch.Draw(moveTwo.Texture, moveTwo.Position, moveTwo.TextureColor);
+            _spriteBatch.Draw(moveThree.Texture, moveThree.Position, moveThree.TextureColor);
+            _spriteBatch.Draw(moveFour.Texture, moveFour.Position, moveFour.TextureColor);
+
 
             _spriteBatch.End();
 

@@ -13,6 +13,7 @@ namespace PSGJ_Jan2025
     {
         public static GamePhases CurrentPhase = 0;
         public static bool AbleToChangePhases = true;
+        static List<NPC> enemyWave = new List<NPC>();
 
         public static async void ChangePhase()
         {
@@ -57,7 +58,16 @@ namespace PSGJ_Jan2025
         {
             return Task.Factory.StartNew(() =>
             {
-                Debug.WriteLine("In phase spawn enemies");
+                int numOfEnemies = Random.Shared.Next(20, 30);
+
+                for (int i = 0; i < numOfEnemies; i++)
+                {
+                    enemyWave.Add(new NPC());
+                }
+
+
+
+                Debug.WriteLine($"spawned {numOfEnemies} enemies");
                 Thread.Sleep(2000);
             });
         }

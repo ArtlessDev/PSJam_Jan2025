@@ -21,6 +21,12 @@ namespace PSGJ_Jan2025
             attack = 20;
             type = CharacterType.NPC;
         }
+        public Character(CharacterType type)
+        {
+            health = 20;
+            attack = 20;
+            this.type = type;
+        }
 
         public Rectangle Rect
         {
@@ -31,12 +37,6 @@ namespace PSGJ_Jan2025
         {
             get { return texture; }
             set { texture = value; }
-        }
-        public Character(CharacterType type)
-        {
-            health = 20;
-            attack = 20;
-            this.type = type;
         }
         public int Health
         {

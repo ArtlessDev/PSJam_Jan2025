@@ -1,6 +1,6 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/Code/PSJam_Jan2025/PSGJ_Jan2025/PSGJ_Jan2025/Content/blank-button.png","C:/Code/PSJam_Jan2025/PSGJ_Jan2025/PSGJ_Jan2025/Content/bin/DesktopGL/Content/blank-button.xnb","TextureProcessor","Texture2DContent",325,36949,0.090002
-"C:/Code/PSJam_Jan2025/PSGJ_Jan2025/PSGJ_Jan2025/Content/button.png","C:/Code/PSJam_Jan2025/PSGJ_Jan2025/PSGJ_Jan2025/Content/bin/DesktopGL/Content/button.xnb","TextureProcessor","Texture2DContent",390,36949,0.1073601
-"C:/Code/PSJam_Jan2025/PSGJ_Jan2025/PSGJ_Jan2025/Content/soldier.png","C:/Code/PSJam_Jan2025/PSGJ_Jan2025/PSGJ_Jan2025/Content/bin/DesktopGL/Content/soldier.xnb","TextureProcessor","Texture2DContent",122,165,0.083057
-"C:/Code/PSJam_Jan2025/PSGJ_Jan2025/PSGJ_Jan2025/Content/Sprites/button.png","C:/Code/PSJam_Jan2025/PSGJ_Jan2025/PSGJ_Jan2025/Content/bin/DesktopGL/Content/Sprites/button.xnb","TextureProcessor","Texture2DContent",390,36949,0.1243182
-"C:/Code/PSJam_Jan2025/PSGJ_Jan2025/PSGJ_Jan2025/Content/zilla.png","C:/Code/PSJam_Jan2025/PSGJ_Jan2025/PSGJ_Jan2025/Content/bin/DesktopGL/Content/zilla.xnb","TextureProcessor","Texture2DContent",359,9301,0.0157329
+"C:/Code/PSJam_Jan2025/PSGJ_Jan2025/PSGJ_Jan2025/Content/blank-button.png","C:/Code/PSJam_Jan2025/PSGJ_Jan2025/PSGJ_Jan2025/Content/bin/DesktopGL/Content/blank-button.xnb","TextureProcessor","Texture2DContent",325,36949,0.1692847
+"C:/Code/PSJam_Jan2025/PSGJ_Jan2025/PSGJ_Jan2025/Content/button.png","C:/Code/PSJam_Jan2025/PSGJ_Jan2025/PSGJ_Jan2025/Content/bin/DesktopGL/Content/button.xnb","TextureProcessor","Texture2DContent",390,36949,0.0071609
+"C:/Code/PSJam_Jan2025/PSGJ_Jan2025/PSGJ_Jan2025/Content/soldier.png","C:/Code/PSJam_Jan2025/PSGJ_Jan2025/PSGJ_Jan2025/Content/bin/DesktopGL/Content/soldier.xnb","TextureProcessor","Texture2DContent",122,165,0.0062241
+"C:/Code/PSJam_Jan2025/PSGJ_Jan2025/PSGJ_Jan2025/Content/Sprites/button.png","C:/Code/PSJam_Jan2025/PSGJ_Jan2025/PSGJ_Jan2025/Content/bin/DesktopGL/Content/Sprites/button.xnb","TextureProcessor","Texture2DContent",390,36949,0.004042
+"C:/Code/PSJam_Jan2025/PSGJ_Jan2025/PSGJ_Jan2025/Content/zilla.png","C:/Code/PSJam_Jan2025/PSGJ_Jan2025/PSGJ_Jan2025/Content/bin/DesktopGL/Content/zilla.xnb","TextureProcessor","Texture2DContent",359,9301,0.0072296
