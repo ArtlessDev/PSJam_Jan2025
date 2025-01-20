@@ -85,23 +85,35 @@ namespace PSGJ_Jan2025
 
         protected override void Update(GameTime gameTime)
         {
+            MouseState mouseState = Mouse.GetState();
+            Rectangle mouseRect = new Rectangle(mouseState.X, mouseState.Y, 1, 1);
+
+
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
             // TODO: Add your update logic here
-            MouseState mouseState = Mouse.GetState();
-            Rectangle mouseRect = new Rectangle(mouseState.X, mouseState.Y, 1, 1);
 
-            if (mouseState.LeftButton == ButtonState.Pressed && mouseRect.Intersects(passTurnButton.Rect) && GameMaster.AbleToChangePhases == true)
-            {
-                GameMaster.ChangePhase();
-            }
+            //if (mouseState.LeftButton == ButtonState.Pressed && mouseRect.Intersects(passTurnButton.Rect) && GameMaster.AbleToChangePhases == true)
+            //{
+            //    GameMaster.ChangePhase();
+            //}
 
-            if (mouseState.LeftButton == ButtonState.Pressed && mouseRect.Intersects(moveOne.Rect))
+            if (mouseState.LeftButton == ButtonState.Pressed && mouseRect.Intersects(moveOne.Rect) && GameMaster.AbleToChangePhases == false)
             {
                 GameMaster.ResetPhaseChangeFlag();
                 Debug.WriteLine("can change phases: " + GameMaster.AbleToChangePhases);
             }
+            //if (GameMaster.CurrentPhase == GamePhases.ResolveTurn)
+            //{
+            //    GameMaster.CurrentPhase = 0;
+            //}
+            //else
+            //{
+
+
+            GameMaster.ChangePhase(actions, mouseRect, mouseState);
+
 
             foreach (var action in actions)
             {

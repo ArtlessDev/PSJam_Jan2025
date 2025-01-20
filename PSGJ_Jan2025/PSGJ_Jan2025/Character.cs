@@ -74,6 +74,11 @@ namespace PSGJ_Jan2025
         {
 
         }
+
+        public void chooseAction()
+        {
+
+        }
     }
     public enum CharacterType
     {

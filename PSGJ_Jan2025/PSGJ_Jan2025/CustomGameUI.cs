@@ -71,4 +71,11 @@ namespace PSGJ_Jan2025
             }
         }
     }
+    public class Move : CustomGameUI
+    {
+        public Move() : base()
+        {
+
+        }
+    }
 }
