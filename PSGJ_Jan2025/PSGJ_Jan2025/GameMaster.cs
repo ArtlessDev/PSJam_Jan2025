@@ -16,31 +16,31 @@ namespace PSGJ_Jan2025
         public static bool AbleToChangePhases = true;
         static List<NPC> enemyWave = new List<NPC>();
 
-        public static async void ChangePhase(List<CustomGameUI> actions, Rectangle mouseRect, MouseState mouseState)
+        public static void ChangePhase(List<CustomGameUI> actions, Rectangle mouseRect, MouseState mouseState)
         {
             if (GameMaster.AbleToChangePhases == true)
             {
                 switch (GameMaster.CurrentPhase)
                 {
                     case GamePhases.EnemySpawn:
-                        Debug.WriteLine(GamePhases.EnemySpawn);
-                        await GameMaster.SpawnEnemies();
+                        //Debug.WriteLine(GamePhases.EnemySpawn);
+                        GameMaster.SpawnEnemies();
                         break;
                     case GamePhases.SelectAbility:
-                        Debug.WriteLine(GamePhases.SelectAbility);
-                        await GameMaster.SelectAbility();
+                        //Debug.WriteLine(GamePhases.SelectAbility);
+                        GameMaster.SelectAbility();
                         break;
                     case GamePhases.PlayerTurn:
-                        Debug.WriteLine(GamePhases.PlayerTurn);
-                        await GameMaster.PlayerTurn(actions, mouseRect, mouseState);
+                        //Debug.WriteLine(GamePhases.PlayerTurn);
+                        GameMaster.PlayerTurn(actions, mouseRect, mouseState);
                         break;
                     case GamePhases.EnemyTurn:
-                        Debug.WriteLine(GamePhases.EnemyTurn);
-                        await GameMaster.EnemyTurn(mouseRect, mouseState);
+                        //Debug.WriteLine(GamePhases.EnemyTurn);
+                        GameMaster.EnemyTurn(mouseRect, mouseState);
                         break;
                     case GamePhases.ResolveTurn:
-                        Debug.WriteLine(GamePhases.ResolveTurn);
-                        await GameMaster.ResolveTurn(mouseRect, mouseState);
+                        //Debug.WriteLine(GamePhases.ResolveTurn);
+                        GameMaster.ResolveTurn(mouseRect, mouseState);
                         break;
                         //}
                         //GameMaster.CurrentPhase++;
@@ -53,11 +53,8 @@ namespace PSGJ_Jan2025
             AbleToChangePhases = true;
         }
 
-        public static async Task<Task> SpawnEnemies()
+        public static void SpawnEnemies()
         {
-            return Task.Factory.StartNew(() =>
-            {
-
                 //this section spawns enemies for the wave
                 int numOfEnemies = Random.Shared.Next(20, 30);
                 for (int i = 0; i < numOfEnemies; i++)
@@ -71,88 +68,66 @@ namespace PSGJ_Jan2025
                 GameMaster.CurrentPhase = GamePhases.SelectAbility;
                 ResetPhaseChangeFlag();
 
-                Thread.Sleep(2000);
-            });
+            
         }
-        public static async Task<Task> SelectAbility()
+
+        public static void SelectAbility()
         {
-            return Task.Factory.StartNew(() =>
-            {
-                Debug.WriteLine("In phase player turn");
+            Debug.WriteLine("In phase select ability");
 
+            ResetPhaseChangeFlag();
 
-                ResetPhaseChangeFlag();
-
-                GameMaster.CurrentPhase = GamePhases.PlayerTurn;
-                Thread.Sleep(2000);
-            });
+            GameMaster.CurrentPhase = GamePhases.PlayerTurn;
         }
         
-        public static async Task<Task> PlayerTurn(List<CustomGameUI> actions, Rectangle mouseRect, MouseState mouseState)
+        public static void PlayerTurn(List<CustomGameUI> actions, Rectangle mouseRect, MouseState mouseState)
         {
-            return Task.Factory.StartNew(() =>
+            AbleToChangePhases = false;
+
+            Debug.WriteLine("In phase player turn");
+
+            //wait for player input to progress
+            foreach (CustomGameUI action in actions)
             {
-                AbleToChangePhases = false;
-
-                Debug.WriteLine("In phase player turn");
-
-                //wait for player input to progress
-                foreach (CustomGameUI action in actions)
+                if (mouseState.LeftButton == ButtonState.Pressed && AbleToChangePhases == true) //&& mouseRect.Intersects(this.Rect))
                 {
-                    if (mouseState.LeftButton == ButtonState.Pressed) //&& mouseRect.Intersects(this.Rect))
-                    {
-                        GameMaster.CurrentPhase = GamePhases.EnemyTurn;
-                        ResetPhaseChangeFlag();
-                    }
+                    GameMaster.CurrentPhase = GamePhases.EnemyTurn;
+                    ResetPhaseChangeFlag();
                 }
+            }
 
-                //await move selection
-
-
-                Thread.Sleep(2000);
-            });
-        }
-        public static async Task<Task> EnemyTurn(Rectangle mouseRect, MouseState mouseState)
-        {
-            return Task.Factory.StartNew(() =>
-            {
-                AbleToChangePhases = false;
-                Debug.WriteLine("In phase enemy turn");
-
-                if (mouseState.LeftButton == ButtonState.Pressed) //&& mouseRect.Intersects(this.Rect))
-                {
-                        ResetPhaseChangeFlag();
-                    GameMaster.CurrentPhase = GamePhases.ResolveTurn;
-                }
-                Thread.Sleep(2000);
-            });
-        }
-        public static async Task<Task> ResolveTurn(Rectangle mouseRect, MouseState mouseState)
-        {
-            return Task.Factory.StartNew(() =>
-            {
-                AbleToChangePhases = false;
-
-                Debug.WriteLine("In phase resolve turn");
-
-                ///if player health is 0
-                ///     game over
-                ///if player health is above 0 and wave done
-                ///     go to spawn enemies state
-                ///if player health is above 0 and wave not done
-                ///     go to player turn
-                if (mouseState.LeftButton == ButtonState.Pressed) //&& mouseRect.Intersects(this.Rect))
-                {
-                        ResetPhaseChangeFlag();
-                    GameMaster.CurrentPhase = GamePhases.PlayerTurn;
-                }
-
-
-                Thread.Sleep(2000);
-            });
         }
 
+        public static void EnemyTurn(Rectangle mouseRect, MouseState mouseState)
+        {
+            AbleToChangePhases = false;
+            Debug.WriteLine("In phase enemy turn");
 
+            if (mouseState.LeftButton == ButtonState.Pressed) //&& mouseRect.Intersects(this.Rect))
+            {
+                    ResetPhaseChangeFlag();
+                GameMaster.CurrentPhase = GamePhases.ResolveTurn;
+            }
+        }
+
+        public static void ResolveTurn(Rectangle mouseRect, MouseState mouseState)
+        {
+            AbleToChangePhases = false;
+
+            Debug.WriteLine("In phase resolve turn");
+
+            ///if player health is 0
+            ///     game over
+            ///if player health is above 0 and wave done
+            ///     go to spawn enemies state
+            ///if player health is above 0 and wave not done
+            ///     go to player turn
+            if (mouseState.LeftButton == ButtonState.Pressed) //&& mouseRect.Intersects(this.Rect))
+            {
+                ResetPhaseChangeFlag();
+                GameMaster.CurrentPhase = GamePhases.PlayerTurn;
+            }
+        }
     }
     public enum GamePhases
     {

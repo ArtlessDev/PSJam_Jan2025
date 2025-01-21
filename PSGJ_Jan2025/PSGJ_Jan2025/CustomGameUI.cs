@@ -73,9 +73,13 @@ namespace PSGJ_Jan2025
     }
     public class Move : CustomGameUI
     {
+        public event EventHandler Click;
+
         public Move() : base()
         {
 
         }
+
+
     }
 }

@@ -15,6 +15,7 @@ namespace PSGJ_Jan2025
         Character zilla;
         NPC enemyUnit;
         List<CustomGameUI> actions;
+        public static event EventHandler Click;
 
         public Game1()
         {
