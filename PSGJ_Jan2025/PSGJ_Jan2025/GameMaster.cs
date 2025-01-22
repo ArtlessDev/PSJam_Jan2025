@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using MonoGame.Extended.Input;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -23,27 +24,20 @@ namespace PSGJ_Jan2025
                 switch (GameMaster.CurrentPhase)
                 {
                     case GamePhases.EnemySpawn:
-                        //Debug.WriteLine(GamePhases.EnemySpawn);
                         GameMaster.SpawnEnemies();
                         break;
                     case GamePhases.SelectAbility:
-                        //Debug.WriteLine(GamePhases.SelectAbility);
                         GameMaster.SelectAbility();
                         break;
                     case GamePhases.PlayerTurn:
-                        //Debug.WriteLine(GamePhases.PlayerTurn);
                         GameMaster.PlayerTurn(actions, mouseRect, mouseState);
                         break;
                     case GamePhases.EnemyTurn:
-                        //Debug.WriteLine(GamePhases.EnemyTurn);
                         GameMaster.EnemyTurn(mouseRect, mouseState);
                         break;
                     case GamePhases.ResolveTurn:
-                        //Debug.WriteLine(GamePhases.ResolveTurn);
                         GameMaster.ResolveTurn(mouseRect, mouseState);
                         break;
-                        //}
-                        //GameMaster.CurrentPhase++;
                 }
             }
         }
@@ -55,24 +49,23 @@ namespace PSGJ_Jan2025
 
         public static void SpawnEnemies()
         {
-                //this section spawns enemies for the wave
-                int numOfEnemies = Random.Shared.Next(20, 30);
-                for (int i = 0; i < numOfEnemies; i++)
-                {
-                    enemyWave.Add(new NPC());
-                }
-                Debug.WriteLine($"spawned {numOfEnemies} enemies");
+            //this section spawns enemies for the wave
+            int numOfEnemies = Random.Shared.Next(20, 30);
+            for (int i = 0; i < numOfEnemies; i++)
+            {
+                enemyWave.Add(new NPC());
+            }
+            Debug.WriteLine($"spawned {numOfEnemies} enemies");
 
-                // this section will allow the player to choose 2 new abilities
+            GameMaster.CurrentPhase = GamePhases.SelectAbility;
+            ResetPhaseChangeFlag();
 
-                GameMaster.CurrentPhase = GamePhases.SelectAbility;
-                ResetPhaseChangeFlag();
-
-            
+            if(MouseStateExtended)
         }
 
         public static void SelectAbility()
         {
+            // this section will allow the player to choose 2 new abilities
             Debug.WriteLine("In phase select ability");
 
             ResetPhaseChangeFlag();

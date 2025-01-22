@@ -86,7 +86,9 @@ namespace PSGJ_Jan2025
 
         protected override void Update(GameTime gameTime)
         {
+            // NEW MouseExtended.Update(gameTime);
             MouseState mouseState = Mouse.GetState();
+            // NEW MouseStateExtended mouseState = MouseExtended.GetState();
             Rectangle mouseRect = new Rectangle(mouseState.X, mouseState.Y, 1, 1);
 
 
@@ -95,26 +97,18 @@ namespace PSGJ_Jan2025
 
             // TODO: Add your update logic here
 
-            //if (mouseState.LeftButton == ButtonState.Pressed && mouseRect.Intersects(passTurnButton.Rect) && GameMaster.AbleToChangePhases == true)
-            //{
-            //    GameMaster.ChangePhase();
-            //}
-
+            //SHOULD BE FINE TO REMOVE
             if (mouseState.LeftButton == ButtonState.Pressed && mouseRect.Intersects(moveOne.Rect) && GameMaster.AbleToChangePhases == false)
             {
                 GameMaster.ResetPhaseChangeFlag();
                 Debug.WriteLine("can change phases: " + GameMaster.AbleToChangePhases);
             }
-            //if (GameMaster.CurrentPhase == GamePhases.ResolveTurn)
-            //{
-            //    GameMaster.CurrentPhase = 0;
-            //}
-            //else
-            //{
 
-
-            GameMaster.ChangePhase(actions, mouseRect, mouseState);
-
+            foreach (CustomGameUI action in actions)
+            {
+                // NEW if (mouseRect.Intersects(moveOne.Rect) && mouseState.WasButtonPressed(MouseButton.Left))
+                GameMaster.ChangePhase(actions, mouseRect, mouseState);
+            }
 
             foreach (var action in actions)
             {

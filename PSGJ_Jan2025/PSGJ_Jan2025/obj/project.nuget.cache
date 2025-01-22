@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "mqOHL2poGus=",
+  "dgSpecHash": "i7yuFjCeoXU=",
   "success": true,
-  "projectFilePath": "C:\\Code\\PSJam_Jan2025\\PSGJ_Jan2025\\PSGJ_Jan2025\\PSGJ_Jan2025.csproj",
+  "projectFilePath": "C:\\Code\\Personal-Work\\PSJam_Jan2025\\PSGJ_Jan2025\\PSGJ_Jan2025\\PSGJ_Jan2025.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Jair\\.nuget\\packages\\monogame.content.builder.task\\3.8.1.303\\monogame.content.builder.task.3.8.1.303.nupkg.sha512",
-    "C:\\Users\\Jair\\.nuget\\packages\\monogame.extended\\4.0.2\\monogame.extended.4.0.2.nupkg.sha512",
-    "C:\\Users\\Jair\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.1.303\\monogame.framework.desktopgl.3.8.1.303.nupkg.sha512"
+    "C:\\Users\\janlas\\.nuget\\packages\\monogame.content.builder.task\\3.8.1.303\\monogame.content.builder.task.3.8.1.303.nupkg.sha512",
+    "C:\\Users\\janlas\\.nuget\\packages\\monogame.extended\\4.0.2\\monogame.extended.4.0.2.nupkg.sha512",
+    "C:\\Users\\janlas\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.1.303\\monogame.framework.desktopgl.3.8.1.303.nupkg.sha512"
   ],
   "logs": []
 }

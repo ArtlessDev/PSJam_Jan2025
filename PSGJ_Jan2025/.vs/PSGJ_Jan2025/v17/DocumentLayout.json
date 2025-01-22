@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Code\\Personal-Work\\PSJam_Jan2025\\PSGJ_Jan2025\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{EBE7F46F-C99A-44DA-918D-EE63B4AF7BEF}|PSGJ_Jan2025\\PSGJ_Jan2025.csproj|c:\\code\\personal-work\\psjam_jan2025\\psgj_jan2025\\psgj_jan2025\\gamemaster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EBE7F46F-C99A-44DA-918D-EE63B4AF7BEF}|PSGJ_Jan2025\\PSGJ_Jan2025.csproj|solutionrelative:psgj_jan2025\\gamemaster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{EBE7F46F-C99A-44DA-918D-EE63B4AF7BEF}|PSGJ_Jan2025\\PSGJ_Jan2025.csproj|c:\\code\\personal-work\\psjam_jan2025\\psgj_jan2025\\psgj_jan2025\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EBE7F46F-C99A-44DA-918D-EE63B4AF7BEF}|PSGJ_Jan2025\\PSGJ_Jan2025.csproj|solutionrelative:psgj_jan2025\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBE7F46F-C99A-44DA-918D-EE63B4AF7BEF}|PSGJ_Jan2025\\PSGJ_Jan2025.csproj|c:\\code\\personal-work\\psjam_jan2025\\psgj_jan2025\\psgj_jan2025\\gamemaster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EBE7F46F-C99A-44DA-918D-EE63B4AF7BEF}|PSGJ_Jan2025\\PSGJ_Jan2025.csproj|solutionrelative:psgj_jan2025\\gamemaster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EBE7F46F-C99A-44DA-918D-EE63B4AF7BEF}|PSGJ_Jan2025\\PSGJ_Jan2025.csproj|c:\\code\\personal-work\\psjam_jan2025\\psgj_jan2025\\psgj_jan2025\\customgameui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -26,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
@@ -38,8 +38,7 @@
               "RelativeToolTip": "PSGJ_Jan2025\\Character.cs",
               "ViewState": "AgIAAC0AAAAAAAAAAAAcwD8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-19T17:34:49.275Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-19T17:34:49.275Z"
             },
             {
               "$type": "Document",
@@ -51,31 +50,30 @@
               "RelativeToolTip": "PSGJ_Jan2025\\CustomGameUI.cs",
               "ViewState": "AgIAABkAAAAAAAAAAAAgwE0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-19T15:16:56.477Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-19T15:16:56.477Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "GameMaster.cs",
               "DocumentMoniker": "C:\\Code\\Personal-Work\\PSJam_Jan2025\\PSGJ_Jan2025\\PSGJ_Jan2025\\GameMaster.cs",
               "RelativeDocumentMoniker": "PSGJ_Jan2025\\GameMaster.cs",
               "ToolTip": "C:\\Code\\Personal-Work\\PSJam_Jan2025\\PSGJ_Jan2025\\PSGJ_Jan2025\\GameMaster.cs",
               "RelativeToolTip": "PSGJ_Jan2025\\GameMaster.cs",
-              "ViewState": "AgIAAFUAAAAAAAAAAAAwwGMAAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAACAAAAAAAAAAAAAgwD4AAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-19T15:12:28.945Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Game1.cs",
               "DocumentMoniker": "C:\\Code\\Personal-Work\\PSJam_Jan2025\\PSGJ_Jan2025\\PSGJ_Jan2025\\Game1.cs",
               "RelativeDocumentMoniker": "PSGJ_Jan2025\\Game1.cs",
               "ToolTip": "C:\\Code\\Personal-Work\\PSJam_Jan2025\\PSGJ_Jan2025\\PSGJ_Jan2025\\Game1.cs",
               "RelativeToolTip": "PSGJ_Jan2025\\Game1.cs",
-              "ViewState": "AgIAAG4AAAAAAAAAAAAQwHIAAAAiAAAAAAAAAA==",
+              "ViewState": "AgIAAE0AAAAAAAAAAAAwwG0AAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-19T14:53:17.134Z",
               "EditorCaption": ""
