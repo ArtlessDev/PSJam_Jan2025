@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoGame.Extended.Input;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -86,9 +87,8 @@ namespace PSGJ_Jan2025
 
         protected override void Update(GameTime gameTime)
         {
-            // NEW MouseExtended.Update(gameTime);
-            MouseState mouseState = Mouse.GetState();
-            // NEW MouseStateExtended mouseState = MouseExtended.GetState();
+            MouseExtended.Update();
+            MouseStateExtended mouseState = MouseExtended.GetState();
             Rectangle mouseRect = new Rectangle(mouseState.X, mouseState.Y, 1, 1);
 
 
@@ -97,18 +97,7 @@ namespace PSGJ_Jan2025
 
             // TODO: Add your update logic here
 
-            //SHOULD BE FINE TO REMOVE
-            if (mouseState.LeftButton == ButtonState.Pressed && mouseRect.Intersects(moveOne.Rect) && GameMaster.AbleToChangePhases == false)
-            {
-                GameMaster.ResetPhaseChangeFlag();
-                Debug.WriteLine("can change phases: " + GameMaster.AbleToChangePhases);
-            }
-
-            foreach (CustomGameUI action in actions)
-            {
-                // NEW if (mouseRect.Intersects(moveOne.Rect) && mouseState.WasButtonPressed(MouseButton.Left))
-                GameMaster.ChangePhase(actions, mouseRect, mouseState);
-            }
+            GameMaster.ChangePhase(actions, mouseRect, mouseState);
 
             foreach (var action in actions)
             {

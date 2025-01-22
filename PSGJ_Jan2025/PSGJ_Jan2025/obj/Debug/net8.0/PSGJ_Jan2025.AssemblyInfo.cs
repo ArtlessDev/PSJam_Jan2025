@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PSGJ_Jan2025")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+65f7c15ba83eeb949a0b7ff12f92c5ff7d802370")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c7fe4c9b9f98587bf8a1e118193a3c03271cc84b")]
 [assembly: System.Reflection.AssemblyProductAttribute("PSGJ_Jan2025")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PSGJ_Jan2025")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
