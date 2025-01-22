@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended.Input;
 using System;
@@ -13,17 +14,19 @@ namespace PSGJ_Jan2025
         public static GamePhases CurrentPhase = GamePhases.Start;
         public static GamePhases PreviousPhase = GamePhases.Start;
         public static bool AbleToChangePhases = true;
-        static List<NPC> enemyWave = new List<NPC>();
+        public static List<NPC> enemyWave = new List<NPC>();
         public static Task task;
+        internal static int WaveNumber = 1;
+        public static ContentManager CustomContent;
 
-        public static void ChangePhase(List<CustomGameUI> actions, Rectangle mouseRect, MouseStateExtended mouseState)
+        public static void ChangePhase(List<CustomGameUI> actions, Rectangle mouseRect, MouseStateExtended mouseState, Character zilla)
         {
-            if (CurrentPhase == GamePhases.Start)
-            {
-                StartState(mouseState);
-            }
+
             switch (CurrentPhase)
             {
+                case GamePhases.Start:
+                    StartState(mouseState);
+                    break;
                 case GamePhases.EnemySpawn:
                     SpawnEnemies(mouseState);
                     break;
@@ -34,7 +37,7 @@ namespace PSGJ_Jan2025
                     PlayerTurn(actions, mouseRect, mouseState);
                     break;
                 case GamePhases.EnemyTurn:
-                    EnemyTurn(mouseRect, mouseState);
+                    EnemyTurn(mouseRect, mouseState, zilla);
                     break;
                 case GamePhases.ResolveTurn:
                     ResolveTurn(mouseRect, mouseState);
@@ -50,10 +53,11 @@ namespace PSGJ_Jan2025
 
         public static void StartState(MouseStateExtended mouseState)
         {
-            Debug.WriteLine("In the Start State");
 
             if (mouseState.WasButtonPressed(MouseButton.Left))
             {
+                Debug.WriteLine("In the Start State");
+
                 CurrentPhase = GamePhases.EnemySpawn;
                 task = ResetPhaseChangeFlag();
             }
@@ -64,7 +68,7 @@ namespace PSGJ_Jan2025
             if (mouseState.WasButtonPressed(MouseButton.Left))
             {
                 //this section spawns enemies for the wave
-                int numOfEnemies = Random.Shared.Next(20, 30);
+                int numOfEnemies = Random.Shared.Next(5*WaveNumber, 10*WaveNumber);
                 for (int i = 0; i < numOfEnemies; i++)
                 {
                     enemyWave.Add(new NPC());
@@ -72,6 +76,7 @@ namespace PSGJ_Jan2025
                 Debug.WriteLine($"spawned {numOfEnemies} enemies");
 
                 CurrentPhase = GamePhases.SelectAbility;
+                WaveNumber++;
                 task = ResetPhaseChangeFlag();
             }
         }
@@ -90,10 +95,10 @@ namespace PSGJ_Jan2025
         
         public static void PlayerTurn(List<CustomGameUI> actions, Rectangle mouseRect, MouseStateExtended mouseState)
         {
-            Debug.WriteLine("In phase player turn");
 
             foreach (CustomGameUI action in actions)
             {
+
                 if (mouseRect.Intersects(action.Rect) && mouseState.WasButtonPressed(MouseButton.Left))
                 {
                     CurrentPhase = GamePhases.EnemyTurn;
@@ -103,12 +108,16 @@ namespace PSGJ_Jan2025
             }
         }
 
-        public static void EnemyTurn(Rectangle mouseRect, MouseStateExtended mouseState)
+        public static void EnemyTurn(Rectangle mouseRect, MouseStateExtended mouseState, Character zilla)
         {
-            Debug.WriteLine("In phase enemy turn");
 
             if (mouseState.WasButtonPressed(MouseButton.Left)) //&& mouseRect.Intersects(this.Rect))
             {
+                Debug.WriteLine("In phase enemy turn");
+                foreach (var enemy in enemyWave)
+                {
+                    enemy.chooseAction(zilla);
+                }
                 task = ResetPhaseChangeFlag();
                 CurrentPhase = GamePhases.ResolveTurn;
             }
@@ -116,11 +125,7 @@ namespace PSGJ_Jan2025
 
         public static void ResolveTurn(Rectangle mouseRect, MouseStateExtended mouseState)
         {
-            AbleToChangePhases = false;
-            PreviousPhase = CurrentPhase;
-
-            Debug.WriteLine("In phase resolve turn");
-
+            
             ///if player health is 0
             ///     game over
             ///if player health is above 0 and wave done

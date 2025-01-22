@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended.Input;
@@ -13,16 +14,15 @@ namespace PSGJ_Jan2025
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private CustomGameUI passTurnButton, moveOne, moveTwo, moveThree, moveFour;
-        Character zilla;
-        NPC enemyUnit;
+        public Character zilla;
         List<CustomGameUI> actions;
-        public static event EventHandler Click;
 
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            GameMaster.CustomContent = Content;
         }
 
         protected override void Initialize()
@@ -68,13 +68,7 @@ namespace PSGJ_Jan2025
             moveFour.Texture = Content.Load<Texture2D>("blank-button");
 
             zilla = new Character(CharacterType.Player);
-            zilla.Rect = new(128, 128, 128, 128);
-            zilla.Texture = Content.Load<Texture2D>("zilla");
             // TODO: use this.Content to load your game content here
-
-            enemyUnit = new NPC();
-            enemyUnit.Rect = new(64, 64, 64, 64);
-            enemyUnit.Texture = Content.Load<Texture2D>("zilla");
 
             actions = new List<CustomGameUI>();
 
@@ -97,11 +91,11 @@ namespace PSGJ_Jan2025
 
             // TODO: Add your update logic here
 
-            GameMaster.ChangePhase(actions, mouseRect, mouseState);
+            GameMaster.ChangePhase(actions, mouseRect, mouseState, zilla);
 
             foreach (var action in actions)
             {
-                action.changeColor(mouseRect, Content);
+                action.changeColor(mouseRect);
             }
 
             base.Update(gameTime);
@@ -115,14 +109,18 @@ namespace PSGJ_Jan2025
 
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
-            _spriteBatch.Draw(zilla.Texture, zilla.Rect, Color.White);
+            _spriteBatch.Draw(zilla.Texture, zilla.Rect, zilla.TextureColor);
+
+            foreach(var enemy in GameMaster.enemyWave)
+            {
+                _spriteBatch.Draw(enemy.Texture, enemy.Rect, enemy.TextureColor);
+            }
 
             _spriteBatch.Draw(passTurnButton.Texture, passTurnButton.Position, passTurnButton.TextureColor);
             _spriteBatch.Draw(moveOne.Texture, moveOne.Position, moveOne.TextureColor);
             _spriteBatch.Draw(moveTwo.Texture, moveTwo.Position, moveTwo.TextureColor);
             _spriteBatch.Draw(moveThree.Texture, moveThree.Position, moveThree.TextureColor);
             _spriteBatch.Draw(moveFour.Texture, moveFour.Position, moveFour.TextureColor);
-
 
             _spriteBatch.End();
 

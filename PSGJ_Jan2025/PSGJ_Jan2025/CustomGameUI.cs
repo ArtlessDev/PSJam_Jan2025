@@ -19,7 +19,6 @@ namespace PSGJ_Jan2025
         Point size;
         Color textureColor;
         public delegate void ButtonEventHandler(object sender, EventArgs e);
-        public event EventHandler<EventArgs> onClick;
 
         public CustomGameUI() 
         {
@@ -57,12 +56,12 @@ namespace PSGJ_Jan2025
             set{ textureColor = value; }
         }
 
-        public void changeColor(Rectangle mouseRect, ContentManager Content)
+        public void changeColor(Rectangle mouseRect)
         {
             if (mouseRect.Intersects(this.Rect))
             {
                 //this.Texture = Content.Load<Texture2D>("zilla");
-                this.TextureColor = Color.Red;
+                this.TextureColor = Color.DarkGray;
             }
             else
             {
@@ -70,16 +69,5 @@ namespace PSGJ_Jan2025
                 this.TextureColor = Color.White;
             }
         }
-    }
-    public class Move : CustomGameUI
-    {
-        public event EventHandler Click;
-
-        public Move() : base()
-        {
-
-        }
-
-
     }
 }

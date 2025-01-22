@@ -9,7 +9,7 @@
       "PSGJ_Jan2025/1.0.0": {
         "dependencies": {
           "MonoGame.Content.Builder.Task": "3.8.2.1105",
-          "MonoGame.Extended": "4.0.2",
+          "MonoGame.Extended": "4.0.4",
           "MonoGame.Framework.DesktopGL": "3.8.2.1105"
         },
         "runtime": {
@@ -17,11 +17,11 @@
         }
       },
       "MonoGame.Content.Builder.Task/3.8.2.1105": {},
-      "MonoGame.Extended/4.0.2": {
+      "MonoGame.Extended/4.0.4": {
         "runtime": {
           "lib/net8.0/MonoGame.Extended.dll": {
-            "assemblyVersion": "4.0.2.0",
-            "fileVersion": "4.0.2.0"
+            "assemblyVersion": "4.0.4.0",
+            "fileVersion": "4.0.4.0"
           }
         }
       },
@@ -107,12 +107,12 @@
       "path": "monogame.content.builder.task/3.8.2.1105",
       "hashPath": "monogame.content.builder.task.3.8.2.1105.nupkg.sha512"
     },
-    "MonoGame.Extended/4.0.2": {
+    "MonoGame.Extended/4.0.4": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-NiB6QJELaS2ezbcyVAWGM83zPkzp7DuRB0rgoFoXhvCs6WjGjfmI0dbmeQrouYF2w3jwMmRa0Pe3HjVsBJtGyg==",
-      "path": "monogame.extended/4.0.2",
-      "hashPath": "monogame.extended.4.0.2.nupkg.sha512"
+      "sha512": "sha512-4CXSHzChnp72GXZo/RoK+iKL7nm1X1XI6uer/osbSjyT+YGhXwnta6+P5+ZnwNp+NyeZtYuN+q/9L98pJgYCHQ==",
+      "path": "monogame.extended/4.0.4",
+      "hashPath": "monogame.extended.4.0.4.nupkg.sha512"
     },
     "MonoGame.Framework.DesktopGL/3.8.2.1105": {
       "type": "package",
