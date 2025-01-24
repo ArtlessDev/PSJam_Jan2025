@@ -61,6 +61,13 @@
 /processorParam:TextureFormat=Color
 /build:button.png
 
+#begin File.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:File.spritefont;NotChunky.spritefont
+
 #begin gray-export.png
 /importer:TextureImporter
 /processor:TextureProcessor

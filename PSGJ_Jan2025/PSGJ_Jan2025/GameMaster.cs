@@ -18,6 +18,7 @@ namespace PSGJ_Jan2025
         public static Task task;
         internal static int WaveNumber = 1;
         public static ContentManager CustomContent;
+        static Font thisFont = new();
 
         public static void ChangePhase(List<CustomGameUI> actions, Rectangle mouseRect, MouseStateExtended mouseState, Character zilla, CustomGameUI[] zones)
         {
@@ -57,6 +58,7 @@ namespace PSGJ_Jan2025
             if (mouseState.WasButtonPressed(MouseButton.Left))
             {
                 Debug.WriteLine("In the Start State");
+                thisFont.FontText = "in the start state";
 
                 CurrentPhase = GamePhases.EnemySpawn;
                 task = ResetPhaseChangeFlag();
@@ -74,6 +76,7 @@ namespace PSGJ_Jan2025
                     enemyWave.Add(new NPC());
                 }
                 Debug.WriteLine($"spawned {numOfEnemies} enemies");
+                thisFont.FontText = $"spawned {numOfEnemies} enemies!";
 
                 CurrentPhase = GamePhases.SelectAbility;
                 WaveNumber++;
@@ -90,6 +93,7 @@ namespace PSGJ_Jan2025
                 {
                     // this section will allow the player to choose 2 new abilities
                     Debug.WriteLine("In phase select ability");
+                    thisFont.FontText = "In phase select ability";
 
                     CurrentPhase = GamePhases.PlayerTurn;
                     task = ResetPhaseChangeFlag();
@@ -107,6 +111,7 @@ namespace PSGJ_Jan2025
                 {
                     CurrentPhase = GamePhases.EnemyTurn;
                     Debug.WriteLine("Run the selected move");
+                    thisFont.FontText = "Run the selected move";
                     task = ResetPhaseChangeFlag();
                 }
             }
@@ -118,6 +123,7 @@ namespace PSGJ_Jan2025
             if (mouseState.WasButtonPressed(MouseButton.Left)) //&& mouseRect.Intersects(this.Rect))
             {
                 Debug.WriteLine("In phase enemy turn");
+                thisFont.FontText = "Run the selected move";
                 foreach (var enemy in enemyWave)
                 {
                     enemy.chooseAction(zilla);
@@ -148,7 +154,8 @@ namespace PSGJ_Jan2025
     {
         Start,
         EnemySpawn,
-        SelectAbility, //new
+        SelectAbility,
+        SelectZone,     //new
         PlayerTurn,
         EnemyTurn,
         ResolveTurn,

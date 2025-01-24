@@ -19,6 +19,8 @@ namespace PSGJ_Jan2025
         Rectangle bgRect;
         Texture2D bg;
         CustomGameUI[] zones;
+        SpriteFont spriteFont;
+        Font mainFontText;
 
         public Game1()
         {
@@ -63,17 +65,15 @@ namespace PSGJ_Jan2025
             };
 
             moveOne = new CustomGameUI();
-            //moveOne.Rect = new Rectangle(64, 512, 256, 144);
-
             moveTwo = new CustomGameUI();
             moveTwo.Rect = new(new Point(512, 416), moveTwo.Size);
-
             moveThree = new CustomGameUI();
             moveThree.Rect = new(new Point(128, 544), moveThree.Size);
-
             moveFour = new CustomGameUI();
             moveFour.Rect = new(new Point(512, 544), moveFour.Size);
-            
+
+            mainFontText = new Font();
+            mainFontText.FontSprite = Content.Load<SpriteFont>("NotChunky");
 
             zilla = new Character(CharacterType.Player);
             // TODO: use this.Content to load your game content here
@@ -106,9 +106,12 @@ namespace PSGJ_Jan2025
                 action.changeColor(mouseRect);
             }
 
-            foreach (var zone in zones)
+            if (GameMaster.CurrentPhase == GamePhases.SelectAbility)
             {
-                zone.changeColor(mouseRect);
+                foreach (var zone in zones)
+                {
+                    zone.changeColor(mouseRect);
+                }
             }
 
             base.Update(gameTime);
@@ -126,16 +129,17 @@ namespace PSGJ_Jan2025
             
             _spriteBatch.Draw(zilla.Texture, zilla.Rect, zilla.TextureColor);
 
-            foreach(var enemy in GameMaster.enemyWave)
+            foreach (var zone in zones)
+            {
+                _spriteBatch.Draw(zone.Texture, zone.Rect, zone.TextureColor);
+            }
+
+            foreach (var enemy in GameMaster.enemyWave)
             {
                 _spriteBatch.Draw(enemy.Texture, enemy.Rect, enemy.TextureColor);
             }
 
-            foreach (var zone in zones) 
-            {
-                _spriteBatch.Draw(zone.Texture, zone.Rect, zone.TextureColor);
-            }
-            
+            _spriteBatch.DrawString(mainFontText.FontSprite, mainFontText.FontText, mainFontText.FontPosition, mainFontText.FontColor);
             _spriteBatch.Draw(passTurnButton.Texture, passTurnButton.Rect, passTurnButton.TextureColor);
             _spriteBatch.Draw(moveOne.Texture, moveOne.Rect, moveOne.TextureColor);
             _spriteBatch.Draw(moveTwo.Texture, moveTwo.Rect, moveTwo.TextureColor);
