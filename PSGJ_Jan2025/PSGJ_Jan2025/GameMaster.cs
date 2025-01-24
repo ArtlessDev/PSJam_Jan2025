@@ -18,7 +18,7 @@ namespace PSGJ_Jan2025
         public static Task task;
         internal static int WaveNumber = 1;
         public static ContentManager CustomContent;
-        static Font thisFont = new();
+        public static Font thisFont = new();
 
         public static void ChangePhase(List<CustomGameUI> actions, Rectangle mouseRect, MouseStateExtended mouseState, Character zilla, CustomGameUI[] zones)
         {
@@ -37,6 +37,9 @@ namespace PSGJ_Jan2025
                 case GamePhases.PlayerTurn:
                     PlayerTurn(actions, mouseRect, mouseState);
                     break;
+                case GamePhases.SelectZone:
+                    SelectZone(zones, mouseRect, mouseState);
+                    break;
                 case GamePhases.EnemyTurn:
                     EnemyTurn(mouseRect, mouseState, zilla);
                     break;
@@ -54,19 +57,22 @@ namespace PSGJ_Jan2025
 
         public static void StartState(MouseStateExtended mouseState)
         {
+            thisFont.FontText = "in the start state [Mouse click to proceed]";
 
             if (mouseState.WasButtonPressed(MouseButton.Left))
             {
-                Debug.WriteLine("In the Start State");
-                thisFont.FontText = "in the start state";
+                thisFont.FontText = "moving out of start state ...";
 
                 CurrentPhase = GamePhases.EnemySpawn;
                 task = ResetPhaseChangeFlag();
             }
         }
 
+        //COMPLETE
         public static void SpawnEnemies(MouseStateExtended mouseState)
         {
+            thisFont.FontText = "oh no Zilla! there are soliders on their way...        [Mouse click to proceed]";
+
             if (mouseState.WasButtonPressed(MouseButton.Left))
             {
                 //this section spawns enemies for the wave
@@ -75,8 +81,7 @@ namespace PSGJ_Jan2025
                 {
                     enemyWave.Add(new NPC());
                 }
-                Debug.WriteLine($"spawned {numOfEnemies} enemies");
-                thisFont.FontText = $"spawned {numOfEnemies} enemies!";
+                thisFont.FontText = $"uh oh! {numOfEnemies} enemies spawned!";
 
                 CurrentPhase = GamePhases.SelectAbility;
                 WaveNumber++;
@@ -84,58 +89,75 @@ namespace PSGJ_Jan2025
             }
         }
 
-        public static void SelectAbility(MouseStateExtended mouseState, CustomGameUI[] zones, Rectangle mouseRect)
+        public static void SelectAbility(MouseStateExtended mouseState, CustomGameUI[] abilities, Rectangle mouseRect)
         {
-            foreach (CustomGameUI zone in zones)
+            thisFont.FontText = "Select 1 of the 4 abilities to add them to your move set!      [Mouse click to proceed]";
+            foreach (CustomGameUI ability in abilities)
             {
-                zone.changeColor(mouseRect);
+                ability.changeColor(mouseRect);
                 if (mouseState.WasButtonPressed(MouseButton.Left))
                 {
-                    // this section will allow the player to choose 2 new abilities
-                    Debug.WriteLine("In phase select ability");
-                    thisFont.FontText = "In phase select ability";
 
                     CurrentPhase = GamePhases.PlayerTurn;
                     task = ResetPhaseChangeFlag();
                 }
             }
         }
-        
+
         public static void PlayerTurn(List<CustomGameUI> actions, Rectangle mouseRect, MouseStateExtended mouseState)
         {
+            thisFont.FontText = "select a learned move";
 
             foreach (CustomGameUI action in actions)
             {
 
                 if (mouseRect.Intersects(action.Rect) && mouseState.WasButtonPressed(MouseButton.Left))
                 {
-                    CurrentPhase = GamePhases.EnemyTurn;
-                    Debug.WriteLine("Run the selected move");
-                    thisFont.FontText = "Run the selected move";
+                    CurrentPhase = GamePhases.SelectZone;
+                    thisFont.FontText = "you have selected a move";
                     task = ResetPhaseChangeFlag();
                 }
             }
         }
+        public static void SelectZone(CustomGameUI[] zones, Rectangle mouseRect, MouseStateExtended mouseState)
+        {
+            thisFont.FontText = "select a zone for your attack";
+
+
+            foreach (CustomGameUI zone in zones)
+            {
+
+                if (mouseRect.Intersects(zone.Rect) && mouseState.WasButtonPressed(MouseButton.Left))
+                {
+                    CurrentPhase = GamePhases.EnemyTurn;
+                    thisFont.FontText = "you have selected a zone";
+                    task = ResetPhaseChangeFlag();
+                }
+            }
+
+        }
+
 
         public static void EnemyTurn(Rectangle mouseRect, MouseStateExtended mouseState, Character zilla)
         {
 
-            if (mouseState.WasButtonPressed(MouseButton.Left)) //&& mouseRect.Intersects(this.Rect))
+            if (mouseState.WasButtonPressed(MouseButton.Left)) 
             {
-                Debug.WriteLine("In phase enemy turn");
-                thisFont.FontText = "Run the selected move";
+                thisFont.FontText = "In phase enemy turn";
                 foreach (var enemy in enemyWave)
                 {
                     enemy.chooseAction(zilla);
                 }
                 task = ResetPhaseChangeFlag();
                 CurrentPhase = GamePhases.ResolveTurn;
+                thisFont.FontText = $"Your health: {zilla.Health}";
             }
         }
 
-        public static void ResolveTurn(Rectangle mouseRect, MouseStateExtended mouseState)
+        public static void ResolveTurn(Rectangle mouseRect, MouseStateExtended mouseState, Character zilla)
         {
-            
+            thisFont.FontText = $"Resolving Turn";
+
             ///if player health is 0
             ///     game over
             ///if player health is above 0 and wave done

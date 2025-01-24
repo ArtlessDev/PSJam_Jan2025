@@ -101,18 +101,23 @@ namespace PSGJ_Jan2025
 
             GameMaster.ChangePhase(actions, mouseRect, mouseState, zilla, zones);
 
-            foreach (var action in actions)
+            if (GameMaster.CurrentPhase == GamePhases.PlayerTurn)
             {
-                action.changeColor(mouseRect);
+                foreach (var action in actions)
+                {
+                    action.changeColor(mouseRect);
+                }
             }
 
-            if (GameMaster.CurrentPhase == GamePhases.SelectAbility)
+            if (GameMaster.CurrentPhase == GamePhases.SelectZone)
             {
                 foreach (var zone in zones)
                 {
                     zone.changeColor(mouseRect);
                 }
             }
+
+            mainFontText.FontText = GameMaster.thisFont.FontText;
 
             base.Update(gameTime);
         }
@@ -140,6 +145,7 @@ namespace PSGJ_Jan2025
             }
 
             _spriteBatch.DrawString(mainFontText.FontSprite, mainFontText.FontText, mainFontText.FontPosition, mainFontText.FontColor);
+            
             _spriteBatch.Draw(passTurnButton.Texture, passTurnButton.Rect, passTurnButton.TextureColor);
             _spriteBatch.Draw(moveOne.Texture, moveOne.Rect, moveOne.TextureColor);
             _spriteBatch.Draw(moveTwo.Texture, moveTwo.Rect, moveTwo.TextureColor);

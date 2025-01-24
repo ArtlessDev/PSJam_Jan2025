@@ -154,7 +154,6 @@ namespace PSGJ_Jan2025
                     break;
                 case 1:
                     AttackAction(zilla);
-                    Debug.WriteLine($"zilla health: {zilla.Health}");
                     break;
                 case 2:
                 default:

@@ -15,7 +15,6 @@ namespace PSGJ_Jan2025
             fontColor = Color.White;
             fontText = "default test";
             fontPosition = new(8, 8);
-            //fontSprite = GameMaster.CustomContent.Load<SpriteFont>("NotChunky");
 
         }
 
