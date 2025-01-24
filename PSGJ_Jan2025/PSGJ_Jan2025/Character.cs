@@ -18,7 +18,14 @@ namespace PSGJ_Jan2025
         Color textureColor;
         Rectangle rect;
         Texture2D texture;
-
+        Rectangle[] zones = {
+            new Rectangle(0, 192, 192, 288),
+            new Rectangle(Random.Shared.Next(192*1, (192*1)+192), Random.Shared.Next(32,320), 192, 288),
+            new Rectangle(Random.Shared.Next(192*2, (192*2)+192), Random.Shared.Next(32,320), 192, 288),
+            new Rectangle(Random.Shared.Next(192*3, (192*3)+192), Random.Shared.Next(32,320), 192, 288),
+            new Rectangle(Random.Shared.Next(192*4, (192*4)+192), Random.Shared.Next(32,320), 192, 288),
+            new Rectangle(Random.Shared.Next(192*5, (192*5)+192), Random.Shared.Next(32,320), 192, 288),
+        };
         public Character()
         {
             health = 20;
@@ -31,7 +38,7 @@ namespace PSGJ_Jan2025
             attack = 20;
             this.type = type;
 
-            Rect = new(128, 128, 128, 128);
+            Rect = new(32, 128, 128, 128);
             Texture = GameMaster.CustomContent.Load<Texture2D>("zilla");
             textureColor = Color.White;
         }
@@ -92,7 +99,7 @@ namespace PSGJ_Jan2025
         {
             Health = 30 * GameMaster.WaveNumber;
             zone = 5;
-            Rect = new Rectangle(Random.Shared.Next(200*zone, 250*zone), Random.Shared.Next(100,400), 16, 16);
+            Rect = new Rectangle(Random.Shared.Next(192*zone, (192*zone)+192), Random.Shared.Next(32,320), 16, 16);
             Texture = GameMaster.CustomContent.Load<Texture2D>("soldier");
             isGuarding = false;
             TextureColor = Color.White;
@@ -115,12 +122,13 @@ namespace PSGJ_Jan2025
 
             Debug.WriteLine("moving");
             zone--;
-            int xPosition = Random.Shared.Next(200 * zone, 250 * zone);
+            int xPosition = Random.Shared.Next(192 * zone, (192 * zone) + 192);
             for (int transition = Rect.X; transition > xPosition; transition--)
             {
                 Rect = new Rectangle(transition, Rect.Y, 16, 16);
                 await Task.Delay(25);
             }
+            Debug.WriteLine(xPosition);
         }
         public void AttackAction(Character zilla)
         {

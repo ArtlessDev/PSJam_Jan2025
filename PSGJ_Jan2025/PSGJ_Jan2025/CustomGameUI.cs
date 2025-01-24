@@ -18,15 +18,21 @@ namespace PSGJ_Jan2025
         Vector2 position;
         Point size;
         Color textureColor;
-        public delegate void ButtonEventHandler(object sender, EventArgs e);
 
         public CustomGameUI() 
         {
-            position = new Vector2(0,0);
-            size = new Point(128, 72);
+            position = new Vector2(128, 416);
+            size = new Point(320, 96);
             rect = new Rectangle(new Point((int)position.X, (int)position.Y), size);
-            texture = null;
             textureColor = Color.White;
+            texture = GameMaster.CustomContent.Load<Texture2D>("gray-export");
+        }
+
+        public CustomGameUI(Rectangle customRect)
+        {
+            texture = GameMaster.CustomContent.Load<Texture2D>("zone");
+            textureColor = Color.White;
+            rect = customRect;
         }
 
         public Rectangle Rect
@@ -68,6 +74,19 @@ namespace PSGJ_Jan2025
                 //this.Texture = Content.Load<Texture2D>("blank-button");
                 this.TextureColor = Color.White;
             }
+        }
+        public void changeColors(Rectangle mouseRect, CustomGameUI zones)
+        {
+            if (mouseRect.Intersects(zones.Rect))
+            {
+                //this.Texture = Content.Load<Texture2D>("zilla");
+                this.TextureColor = Color.DarkGray;
+            }
+            else
+            {
+                //this.Texture = Content.Load<Texture2D>("blank-button");
+                this.TextureColor = Color.White;
+            }   
         }
     }
 }

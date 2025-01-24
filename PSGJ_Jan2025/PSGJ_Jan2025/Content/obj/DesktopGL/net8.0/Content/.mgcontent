@@ -4,13 +4,31 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Code/Personal-Work/PSJam_Jan2025/PSGJ_Jan2025/PSGJ_Jan2025/Content/blank-button.png</File>
-    <File>C:/Code/Personal-Work/PSJam_Jan2025/PSGJ_Jan2025/PSGJ_Jan2025/Content/button.png</File>
-    <File>C:/Code/Personal-Work/PSJam_Jan2025/PSGJ_Jan2025/PSGJ_Jan2025/Content/soldier.png</File>
-    <File>C:/Code/Personal-Work/PSJam_Jan2025/PSGJ_Jan2025/PSGJ_Jan2025/Content/Sprites/button.png</File>
-    <File>C:/Code/Personal-Work/PSJam_Jan2025/PSGJ_Jan2025/PSGJ_Jan2025/Content/zilla.png</File>
+    <File>C:/Code/PSJam_Jan2025/PSGJ_Jan2025/PSGJ_Jan2025/Content/blank-button.png</File>
+    <File>C:/Code/PSJam_Jan2025/PSGJ_Jan2025/PSGJ_Jan2025/Content/blank-space.png</File>
+    <File>C:/Code/PSJam_Jan2025/PSGJ_Jan2025/PSGJ_Jan2025/Content/blue-export.png</File>
+    <File>C:/Code/PSJam_Jan2025/PSGJ_Jan2025/PSGJ_Jan2025/Content/button.png</File>
+    <File>C:/Code/PSJam_Jan2025/PSGJ_Jan2025/PSGJ_Jan2025/Content/gray-export.png</File>
+    <File>C:/Code/PSJam_Jan2025/PSGJ_Jan2025/PSGJ_Jan2025/Content/green-export.png</File>
+    <File>C:/Code/PSJam_Jan2025/PSGJ_Jan2025/PSGJ_Jan2025/Content/kaiju-vs-army.png</File>
+    <File>C:/Code/PSJam_Jan2025/PSGJ_Jan2025/PSGJ_Jan2025/Content/red-export.png</File>
+    <File>C:/Code/PSJam_Jan2025/PSGJ_Jan2025/PSGJ_Jan2025/Content/soldier.png</File>
+    <File>C:/Code/PSJam_Jan2025/PSGJ_Jan2025/PSGJ_Jan2025/Content/Sprites/button.png</File>
+    <File>C:/Code/PSJam_Jan2025/PSGJ_Jan2025/PSGJ_Jan2025/Content/white-export.png</File>
+    <File>C:/Code/PSJam_Jan2025/PSGJ_Jan2025/PSGJ_Jan2025/Content/yellow-export.png</File>
+    <File>C:/Code/PSJam_Jan2025/PSGJ_Jan2025/PSGJ_Jan2025/Content/zilla.png</File>
+    <File>C:/Code/PSJam_Jan2025/PSGJ_Jan2025/PSGJ_Jan2025/Content/zone.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

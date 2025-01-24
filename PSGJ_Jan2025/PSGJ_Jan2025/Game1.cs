@@ -16,6 +16,9 @@ namespace PSGJ_Jan2025
         private CustomGameUI passTurnButton, moveOne, moveTwo, moveThree, moveFour;
         public Character zilla;
         List<CustomGameUI> actions;
+        Rectangle bgRect;
+        Texture2D bg;
+        CustomGameUI[] zones;
 
         public Game1()
         {
@@ -43,29 +46,34 @@ namespace PSGJ_Jan2025
 
             //this will be the guard function
             passTurnButton = new CustomGameUI();
-            passTurnButton.Position = new(560, 480);
-            passTurnButton.Rect = new(new Point(560, 480), passTurnButton.Size);
+            passTurnButton.Position = new(896f, 416f);
+            passTurnButton.Size = new Point(256, 96);
+            passTurnButton.Rect = new(new Point(896, 416), passTurnButton.Size);
             passTurnButton.Texture = Content.Load<Texture2D>("button");
 
+            bgRect = new Rectangle(0, 0, 1280, 720);
+            bg = Content.Load<Texture2D>("kaiju-vs-army");
+
+            zones = new CustomGameUI[] { 
+                new CustomGameUI(new Rectangle(192*1, 32, 192, 320)),
+                new CustomGameUI(new Rectangle(192*2, 32, 192, 320)),
+                new CustomGameUI(new Rectangle(192*3, 32, 192, 320)),
+                new CustomGameUI(new Rectangle(192*4, 32, 192, 320)),
+                new CustomGameUI(new Rectangle(192*5, 32, 192, 320)),
+            };
+
             moveOne = new CustomGameUI();
-            moveOne.Position = new(160, 480);
-            moveOne.Rect = new(new Point(160, 480), moveOne.Size);
-            moveOne.Texture = Content.Load<Texture2D>("blank-button");
+            //moveOne.Rect = new Rectangle(64, 512, 256, 144);
 
             moveTwo = new CustomGameUI();
-            moveTwo.Position = new(320, 480);
-            moveTwo.Rect = new(new Point(320, 480), moveTwo.Size);
-            moveTwo.Texture = Content.Load<Texture2D>("blank-button");
+            moveTwo.Rect = new(new Point(512, 416), moveTwo.Size);
 
             moveThree = new CustomGameUI();
-            moveThree.Position = new(160, 560);
-            moveThree.Rect = new(new Point(160, 560), moveThree.Size);
-            moveThree.Texture = Content.Load<Texture2D>("blank-button");
+            moveThree.Rect = new(new Point(128, 544), moveThree.Size);
 
             moveFour = new CustomGameUI();
-            moveFour.Position = new(320, 560);
-            moveFour.Rect = new(new Point(320, 560), moveFour.Size);
-            moveFour.Texture = Content.Load<Texture2D>("blank-button");
+            moveFour.Rect = new(new Point(512, 544), moveFour.Size);
+            
 
             zilla = new Character(CharacterType.Player);
             // TODO: use this.Content to load your game content here
@@ -91,11 +99,16 @@ namespace PSGJ_Jan2025
 
             // TODO: Add your update logic here
 
-            GameMaster.ChangePhase(actions, mouseRect, mouseState, zilla);
+            GameMaster.ChangePhase(actions, mouseRect, mouseState, zilla, zones);
 
             foreach (var action in actions)
             {
                 action.changeColor(mouseRect);
+            }
+
+            foreach (var zone in zones)
+            {
+                zone.changeColor(mouseRect);
             }
 
             base.Update(gameTime);
@@ -103,12 +116,14 @@ namespace PSGJ_Jan2025
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            //GraphicsDevice.Clear(Color.Peru);
 
             // TODO: Add your drawing code here
 
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
+            _spriteBatch.Draw(bg, bgRect, Color.White);
+            
             _spriteBatch.Draw(zilla.Texture, zilla.Rect, zilla.TextureColor);
 
             foreach(var enemy in GameMaster.enemyWave)
@@ -116,11 +131,16 @@ namespace PSGJ_Jan2025
                 _spriteBatch.Draw(enemy.Texture, enemy.Rect, enemy.TextureColor);
             }
 
-            _spriteBatch.Draw(passTurnButton.Texture, passTurnButton.Position, passTurnButton.TextureColor);
-            _spriteBatch.Draw(moveOne.Texture, moveOne.Position, moveOne.TextureColor);
-            _spriteBatch.Draw(moveTwo.Texture, moveTwo.Position, moveTwo.TextureColor);
-            _spriteBatch.Draw(moveThree.Texture, moveThree.Position, moveThree.TextureColor);
-            _spriteBatch.Draw(moveFour.Texture, moveFour.Position, moveFour.TextureColor);
+            foreach (var zone in zones) 
+            {
+                _spriteBatch.Draw(zone.Texture, zone.Rect, zone.TextureColor);
+            }
+            
+            _spriteBatch.Draw(passTurnButton.Texture, passTurnButton.Rect, passTurnButton.TextureColor);
+            _spriteBatch.Draw(moveOne.Texture, moveOne.Rect, moveOne.TextureColor);
+            _spriteBatch.Draw(moveTwo.Texture, moveTwo.Rect, moveTwo.TextureColor);
+            _spriteBatch.Draw(moveThree.Texture, moveThree.Rect, moveThree.TextureColor);
+            _spriteBatch.Draw(moveFour.Texture, moveFour.Rect, moveFour.TextureColor);
 
             _spriteBatch.End();
 

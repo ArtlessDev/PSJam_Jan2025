@@ -19,7 +19,7 @@ namespace PSGJ_Jan2025
         internal static int WaveNumber = 1;
         public static ContentManager CustomContent;
 
-        public static void ChangePhase(List<CustomGameUI> actions, Rectangle mouseRect, MouseStateExtended mouseState, Character zilla)
+        public static void ChangePhase(List<CustomGameUI> actions, Rectangle mouseRect, MouseStateExtended mouseState, Character zilla, CustomGameUI[] zones)
         {
 
             switch (CurrentPhase)
@@ -31,7 +31,7 @@ namespace PSGJ_Jan2025
                     SpawnEnemies(mouseState);
                     break;
                 case GamePhases.SelectAbility:
-                    SelectAbility(mouseState);
+                    SelectAbility(mouseState, zones, mouseRect);
                     break;
                 case GamePhases.PlayerTurn:
                     PlayerTurn(actions, mouseRect, mouseState);
@@ -81,15 +81,19 @@ namespace PSGJ_Jan2025
             }
         }
 
-        public static void SelectAbility(MouseStateExtended mouseState)
+        public static void SelectAbility(MouseStateExtended mouseState, CustomGameUI[] zones, Rectangle mouseRect)
         {
-            if (mouseState.WasButtonPressed(MouseButton.Left))
+            foreach (CustomGameUI zone in zones)
             {
-                // this section will allow the player to choose 2 new abilities
-                Debug.WriteLine("In phase select ability");
+                zone.changeColor(mouseRect);
+                if (mouseState.WasButtonPressed(MouseButton.Left))
+                {
+                    // this section will allow the player to choose 2 new abilities
+                    Debug.WriteLine("In phase select ability");
 
-                CurrentPhase = GamePhases.PlayerTurn;
-                task = ResetPhaseChangeFlag();
+                    CurrentPhase = GamePhases.PlayerTurn;
+                    task = ResetPhaseChangeFlag();
+                }
             }
         }
         
