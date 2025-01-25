@@ -18,9 +18,11 @@ namespace PSGJ_Jan2025
         Vector2 position;
         Point size;
         Color textureColor;
+        string moveName;
 
         public CustomGameUI() 
         {
+            moveName = "-----";
             position = new Vector2(128, 416);
             size = new Point(320, 96);
             rect = new Rectangle(new Point((int)position.X, (int)position.Y), size);
@@ -30,11 +32,17 @@ namespace PSGJ_Jan2025
 
         public CustomGameUI(Rectangle customRect)
         {
+            moveName = "-----";
             texture = GameMaster.CustomContent.Load<Texture2D>("zone");
             textureColor = Color.White;
             rect = customRect;
         }
 
+        public string MoveName
+        {
+            get { return moveName; }
+            set { value = moveName; }
+        }
         public Rectangle Rect
         {
             get { return rect; }

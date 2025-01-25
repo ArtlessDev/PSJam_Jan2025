@@ -6,18 +6,24 @@ using System.Threading.Tasks;
 
 namespace PSGJ_Jan2025
 {
-    internal class Ability
+    public class Ability
     {
         string abilityName;
         int baseDamagePower;
-        MoveType moveType;
-        
+        Element moveType;
 
-        public Ability() 
+
+        public Ability()
         {
             abilityName = "pound";
             baseDamagePower = 10;
-            moveType = MoveType.Physical;
+            moveType = Element.Physical;
+        }
+        public Ability(CustomGameUI button)
+        {
+            abilityName = button.MoveName;
+            baseDamagePower = 40;
+            moveType = Element.Physical;
         }
 
         public int BaseDamagePower
@@ -30,9 +36,15 @@ namespace PSGJ_Jan2025
             get { return abilityName; }
             set { abilityName = value; }
         }
+        public Element MoveElement
+        {
+            get { return moveType; }
+            set { value = moveType; }
+            
+        }
     }
 
-    enum MoveType
+    public enum Element
     {
         None,
         Physical,

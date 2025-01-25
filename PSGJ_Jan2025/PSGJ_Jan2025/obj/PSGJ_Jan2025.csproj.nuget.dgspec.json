@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Code\\Personal-Work\\PSJam_Jan2025\\PSGJ_Jan2025\\PSGJ_Jan2025\\PSGJ_Jan2025.csproj": {}
+    "C:\\Code\\PSJam_Jan2025\\PSGJ_Jan2025\\PSGJ_Jan2025\\PSGJ_Jan2025.csproj": {}
   },
   "projects": {
-    "C:\\Code\\Personal-Work\\PSJam_Jan2025\\PSGJ_Jan2025\\PSGJ_Jan2025\\PSGJ_Jan2025.csproj": {
+    "C:\\Code\\PSJam_Jan2025\\PSGJ_Jan2025\\PSGJ_Jan2025\\PSGJ_Jan2025.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Code\\Personal-Work\\PSJam_Jan2025\\PSGJ_Jan2025\\PSGJ_Jan2025\\PSGJ_Jan2025.csproj",
+        "projectUniqueName": "C:\\Code\\PSJam_Jan2025\\PSGJ_Jan2025\\PSGJ_Jan2025\\PSGJ_Jan2025.csproj",
         "projectName": "PSGJ_Jan2025",
-        "projectPath": "C:\\Code\\Personal-Work\\PSJam_Jan2025\\PSGJ_Jan2025\\PSGJ_Jan2025\\PSGJ_Jan2025.csproj",
-        "packagesPath": "C:\\Users\\janlas\\.nuget\\packages\\",
-        "outputPath": "C:\\Code\\Personal-Work\\PSJam_Jan2025\\PSGJ_Jan2025\\PSGJ_Jan2025\\obj\\",
+        "projectPath": "C:\\Code\\PSJam_Jan2025\\PSGJ_Jan2025\\PSGJ_Jan2025\\PSGJ_Jan2025.csproj",
+        "packagesPath": "C:\\Users\\jayan\\.nuget\\packages\\",
+        "outputPath": "C:\\Code\\PSJam_Jan2025\\PSGJ_Jan2025\\PSGJ_Jan2025\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\janlas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\jayan\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,8 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://pkgs.dev.azure.com/FreedomPay/Platform/_packaging/Platform/nuget/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
@@ -80,7 +79,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

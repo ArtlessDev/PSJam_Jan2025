@@ -129,7 +129,7 @@ namespace PSGJ_Jan2025
             // TODO: Add your drawing code here
 
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-
+            
             _spriteBatch.Draw(bg, bgRect, Color.White);
             
             _spriteBatch.Draw(zilla.Texture, zilla.Rect, zilla.TextureColor);
@@ -151,6 +151,11 @@ namespace PSGJ_Jan2025
             _spriteBatch.Draw(moveTwo.Texture, moveTwo.Rect, moveTwo.TextureColor);
             _spriteBatch.Draw(moveThree.Texture, moveThree.Rect, moveThree.TextureColor);
             _spriteBatch.Draw(moveFour.Texture, moveFour.Rect, moveFour.TextureColor);
+
+            _spriteBatch.DrawString(mainFontText.FontSprite, moveOne.MoveName, mainFontText.FontPosition, moveOne.TextureColor);
+            _spriteBatch.DrawString(mainFontText.FontSprite, moveTwo.MoveName, mainFontText.FontPosition, moveTwo.TextureColor);
+            _spriteBatch.DrawString(mainFontText.FontSprite, moveThree.MoveName, mainFontText.FontPosition, moveThree.TextureColor);
+            _spriteBatch.DrawString(mainFontText.FontSprite, moveFour.MoveName, moveFour.Position, moveFour.TextureColor);
 
             _spriteBatch.End();
 

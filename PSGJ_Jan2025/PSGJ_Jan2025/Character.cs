@@ -13,7 +13,7 @@ namespace PSGJ_Jan2025
 {
     public class Character
     {
-        int health, attack;
+        int maximumHealth, currentHealth, attack;
         CharacterType type;
         Color textureColor;
         Rectangle rect;
@@ -28,13 +28,15 @@ namespace PSGJ_Jan2025
         };
         public Character()
         {
-            health = 20;
+            currentHealth = 50;
+            maximumHealth = 50;
             attack = 20;
             type = CharacterType.NPC;
         }
         public Character(CharacterType type)
         {
-            health = 20;
+            currentHealth = 50;
+            maximumHealth = 50;
             attack = 20;
             this.type = type;
 
@@ -49,9 +51,17 @@ namespace PSGJ_Jan2025
             set { textureColor = value; }
         }
 
+        List<Ability> movesList = new List<Ability>();
+
+        public List<Ability> MovesList
+        {
+            get { return movesList; }
+            set { movesList = value; }
+        }
+
         public async void TakesDamage()
         {
-            health--;
+            currentHealth--;
 
             this.TextureColor = Color.Red;
             await Task.Delay(150);
@@ -73,10 +83,15 @@ namespace PSGJ_Jan2025
             get { return texture; }
             set { texture = value; }
         }
-        public int Health
+        public int CurrentHealth
         {
-            get { return health; }
-            set { health = value; }
+            get { return currentHealth; }
+            set { currentHealth = value; }
+        }
+        public int MaximumHealth
+        {
+            get { return maximumHealth; }
+            set { maximumHealth = value; }
         }
         public int Attack
         {
@@ -93,18 +108,28 @@ namespace PSGJ_Jan2025
     public class NPC : Character
     {
         int zone;
-        bool isGuarding;
+        bool isGuarding, canMoveZones;
+        Element mobElement;
 
         public NPC() : base()
         {
-            Health = 30 * GameMaster.WaveNumber;
+            canMoveZones = true;
+            CurrentHealth = 20 * GameMaster.WaveNumber;
             zone = 5;
             Rect = new Rectangle(Random.Shared.Next(192*zone, (192*zone)+192), Random.Shared.Next(32,320), 16, 16);
             Texture = GameMaster.CustomContent.Load<Texture2D>("soldier");
             isGuarding = false;
             TextureColor = Color.White;
+            int tempElement = Random.Shared.Next(0, 5);
+            mobElement = (Element)tempElement;
+            Debug.WriteLine(mobElement);
         }
 
+        public Element MobElement
+        {
+            get{ return mobElement; }
+            set { mobElement = value; }
+        }
         public int Zone
         {
             get { return zone; }
@@ -116,30 +141,43 @@ namespace PSGJ_Jan2025
             set { value = isGuarding; }
         }
 
+        public bool CanMoveZones
+        {
+            get { return isGuarding; }
+            set { value = isGuarding; }
+        }
+
         public async void MoveAction()
         {
-            isGuarding = false;
 
-            Debug.WriteLine("moving");
-            zone--;
-            int xPosition = Random.Shared.Next(192 * zone, (192 * zone) + 192);
-            for (int transition = Rect.X; transition > xPosition; transition--)
+            //Debug.WriteLine("moving");
+            if(canMoveZones)
             {
-                Rect = new Rectangle(transition, Rect.Y, 16, 16);
-                await Task.Delay(25);
+                zone--;
+                isGuarding = false;
+                //this flag can be used to implement stronger enemies very easily
+                //canMoveZones = false;
+                //Debug.WriteLine("moving to zone number " + zone);
+
+                int xPosition = Random.Shared.Next(192 * zone, (192 * zone) + 192);
+                for (int transition = Rect.X; transition > xPosition; transition--)
+                {
+                    Rect = new Rectangle(transition, Rect.Y, 16, 16);
+                    await Task.Delay(25);
+                }
+                //Debug.WriteLine(GameMaster.enemyWave.IndexOf(this) + ": " + xPosition);
             }
-            Debug.WriteLine(xPosition);
         }
         public void AttackAction(Character zilla)
         {
             isGuarding = false;
-            Debug.WriteLine("attacking");
+            //Debug.WriteLine("attacking");
             zilla.TakesDamage();
             
         }
         public void GuardAction()
         {
-            Debug.WriteLine("guarding");
+            //Debug.WriteLine("guarding");
             isGuarding = true;
         }
 
@@ -160,6 +198,59 @@ namespace PSGJ_Jan2025
                     GuardAction();
                     break;
             }
+        }
+
+        public bool IsWeakTo(Ability selectedAbility)
+        {
+            //THERES GOTTA BE A BETTER WAY TO CHECK THIS BUT I CANT BE BOTHERED RIGHT NOW TO FIGURE IT OUT SO ENJOY THE SPAGHETTI
+            
+            if (this.MobElement == Element.Universal && selectedAbility.MoveElement == Element.Physical)
+            {
+                return true;
+            }
+            if (this.MobElement == Element.Ice && (selectedAbility.MoveElement == Element.Fire || selectedAbility.MoveElement == Element.Universal))
+            {
+                return true;
+            }
+            if (this.MobElement == Element.Fire && (selectedAbility.MoveElement == Element.Electric || selectedAbility.MoveElement == Element.Universal))
+            {
+                return true;
+            }
+            if (this.MobElement == Element.Electric && (selectedAbility.MoveElement == Element.Ice || selectedAbility.MoveElement == Element.Universal))
+            {
+                return true;
+            }
+            if (this.MobElement == Element.Physical && (selectedAbility.MoveElement == Element.Ice || selectedAbility.MoveElement == Element.Electric || selectedAbility.MoveElement == Element.Fire))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool IsResistantTo(Ability selectedAbility)
+        {
+            //TYPES CANNOT BE STRONG AGAINST THEMSELVES EXCEDPT UNIVERSAL
+            if (this.MobElement == Element.Universal && (selectedAbility.MoveElement == Element.Fire || selectedAbility.MoveElement == Element.Ice || selectedAbility.MoveElement == Element.Electric))
+            {
+                return true;
+            }
+            if (this.MobElement == Element.Physical && (selectedAbility.MoveElement == Element.Physical || selectedAbility.MoveElement == Element.Universal))
+            {
+                return true;
+            }
+            if (this.MobElement == Element.Ice && (selectedAbility.MoveElement == Element.Ice || selectedAbility.MoveElement == Element.Electric))
+            {
+                return true;
+            }
+            if (this.MobElement == Element.Fire && (selectedAbility.MoveElement == Element.Fire || selectedAbility.MoveElement == Element.Ice))
+            {
+                return true;
+            }
+            if (this.MobElement == Element.Electric && (selectedAbility.MoveElement == Element.Electric || selectedAbility.MoveElement == Element.Fire))
+            {
+                return true;
+            }
+            return false;
         }
     }
     public enum CharacterType
