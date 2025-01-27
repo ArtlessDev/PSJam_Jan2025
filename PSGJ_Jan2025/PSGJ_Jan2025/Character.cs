@@ -229,7 +229,9 @@ namespace PSGJ_Jan2025
 
         public bool IsResistantTo(Ability selectedAbility)
         {
-            //TYPES CANNOT BE STRONG AGAINST THEMSELVES EXCEDPT UNIVERSAL
+            //THERES GOTTA BE A BETTER WAY TO CHECK THIS BUT I CANT BE BOTHERED RIGHT NOW TO FIGURE IT OUT SO ENJOY THE SPAGHETTI
+
+            //TYPES CANNOT BE STRONG AGAINST THEMSELVES EXCEPT UNIVERSAL
             if (this.MobElement == Element.Universal && (selectedAbility.MoveElement == Element.Fire || selectedAbility.MoveElement == Element.Ice || selectedAbility.MoveElement == Element.Electric))
             {
                 return true;

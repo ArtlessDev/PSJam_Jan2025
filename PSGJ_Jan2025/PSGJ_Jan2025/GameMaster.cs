@@ -187,9 +187,14 @@ namespace PSGJ_Jan2025
         {
 
             thisFont.FontText = "In phase enemy turn";
-            foreach (var enemy in enemyWave)
+            foreach (var enemy in enemyWave.ToList())
             {
                 enemy.chooseAction(zilla);
+                if (enemy.Zone <= 0)
+                {
+                    zilla.CurrentHealth -= 5;
+                    enemyWave.Remove(enemy);
+                }
             }
             task = ResetPhaseChangeFlag();
             CurrentPhase = GamePhases.ResolveTurn;
