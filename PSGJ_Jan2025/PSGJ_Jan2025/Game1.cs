@@ -67,10 +67,13 @@ namespace PSGJ_Jan2025
             moveOne = new CustomGameUI();
             moveTwo = new CustomGameUI();
             moveTwo.Rect = new(new Point(512, 416), moveTwo.Size);
+            moveTwo.TextPosition = new(512+64, 416+48);
             moveThree = new CustomGameUI();
             moveThree.Rect = new(new Point(128, 544), moveThree.Size);
+            moveThree.TextPosition = new(128+64, 544+48);
             moveFour = new CustomGameUI();
             moveFour.Rect = new(new Point(512, 544), moveFour.Size);
+            moveFour.TextPosition = new(512+64, 544+48);
 
             mainFontText = new Font();
             mainFontText.FontSprite = Content.Load<SpriteFont>("NotChunky");
@@ -124,8 +127,6 @@ namespace PSGJ_Jan2025
 
         protected override void Draw(GameTime gameTime)
         {
-            //GraphicsDevice.Clear(Color.Peru);
-
             // TODO: Add your drawing code here
 
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
@@ -152,10 +153,10 @@ namespace PSGJ_Jan2025
             _spriteBatch.Draw(moveThree.Texture, moveThree.Rect, moveThree.TextureColor);
             _spriteBatch.Draw(moveFour.Texture, moveFour.Rect, moveFour.TextureColor);
 
-            _spriteBatch.DrawString(mainFontText.FontSprite, moveOne.MoveName, mainFontText.FontPosition, moveOne.TextureColor);
-            _spriteBatch.DrawString(mainFontText.FontSprite, moveTwo.MoveName, mainFontText.FontPosition, moveTwo.TextureColor);
-            _spriteBatch.DrawString(mainFontText.FontSprite, moveThree.MoveName, mainFontText.FontPosition, moveThree.TextureColor);
-            _spriteBatch.DrawString(mainFontText.FontSprite, moveFour.MoveName, moveFour.Position, moveFour.TextureColor);
+            _spriteBatch.DrawString(mainFontText.FontSprite, moveOne.MoveName, moveOne.TextPosition, moveOne.TextureColor);
+            _spriteBatch.DrawString(mainFontText.FontSprite, moveTwo.MoveName, moveTwo.TextPosition, moveTwo.TextureColor);
+            _spriteBatch.DrawString(mainFontText.FontSprite, moveThree.MoveName, moveThree.TextPosition, moveThree.TextureColor);
+            _spriteBatch.DrawString(mainFontText.FontSprite, moveFour.MoveName, moveFour.TextPosition, moveFour.TextureColor);
 
             _spriteBatch.End();
 

@@ -15,7 +15,7 @@ namespace PSGJ_Jan2025
     {
         Rectangle rect;
         Texture2D texture;
-        Vector2 position;
+        Vector2 position, textposition;
         Point size;
         Color textureColor;
         string moveName;
@@ -24,6 +24,7 @@ namespace PSGJ_Jan2025
         {
             moveName = "-----";
             position = new Vector2(128, 416);
+            textposition = new Vector2(128+64, 416+48);
             size = new Point(320, 96);
             rect = new Rectangle(new Point((int)position.X, (int)position.Y), size);
             textureColor = Color.White;
@@ -58,6 +59,11 @@ namespace PSGJ_Jan2025
         {
             get { return position; }
             set { position = value; }
+        }
+        public Vector2 TextPosition
+        {
+            get { return textposition; }
+            set { textposition = value; }
         }
         public Point Size
         {
