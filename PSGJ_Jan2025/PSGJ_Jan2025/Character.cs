@@ -119,10 +119,20 @@ namespace PSGJ_Jan2025
             Rect = new Rectangle(Random.Shared.Next(192*zone, (192*zone)+192), Random.Shared.Next(32,320), 16, 16);
             Texture = GameMaster.CustomContent.Load<Texture2D>("soldier");
             isGuarding = false;
-            TextureColor = Color.White;
             int tempElement = Random.Shared.Next(0, 5);
             mobElement = (Element)tempElement;
             Debug.WriteLine(mobElement);
+
+
+            switch (mobElement)
+            {
+                case Element.Fire: TextureColor = Color.Red; break;
+                case Element.Ice: TextureColor = Color.Blue; break;
+                case Element.Electric: TextureColor = Color.Yellow; break;
+                case Element.Physical: TextureColor = Color.Orange; break;
+                case Element.Universal: TextureColor = Color.Silver; break;
+                default: TextureColor = Color.White; break;
+            }
         }
 
         public Element MobElement
@@ -204,25 +214,63 @@ namespace PSGJ_Jan2025
         {
             //THERES GOTTA BE A BETTER WAY TO CHECK THIS BUT I CANT BE BOTHERED RIGHT NOW TO FIGURE IT OUT SO ENJOY THE SPAGHETTI
             
-            if (this.MobElement == Element.Universal && selectedAbility.MoveElement == Element.Physical)
+            if (this.MobElement == Element.Universal)
             {
-                return true;
+                switch (selectedAbility.MoveElement)
+                {
+                    case Element.Physical:
+                        return true;
+                    default:
+                        return false;
+                }
             }
-            if (this.MobElement == Element.Ice && (selectedAbility.MoveElement == Element.Fire || selectedAbility.MoveElement == Element.Universal))
+            if (this.MobElement == Element.Ice)
             {
-                return true;
+                switch (selectedAbility.MoveElement)
+                {
+                    case Element.Ice:
+                    case Element.Electric:
+                    case Element.Physical:
+                        return false;
+                    default:
+                        return true;
+                }
             }
-            if (this.MobElement == Element.Fire && (selectedAbility.MoveElement == Element.Electric || selectedAbility.MoveElement == Element.Universal))
+            if (this.MobElement == Element.Fire)
             {
-                return true;
+                switch (selectedAbility.MoveElement)
+                {
+                    case Element.Fire:
+                    case Element.Electric:
+                    case Element.Physical:
+                        return false;
+                    default:
+                        return true;
+                }
             }
-            if (this.MobElement == Element.Electric && (selectedAbility.MoveElement == Element.Ice || selectedAbility.MoveElement == Element.Universal))
+            if (this.MobElement == Element.Electric)
             {
-                return true;
+                switch (selectedAbility.MoveElement)
+                {
+                    case Element.Fire:
+                    case Element.Ice:
+                    case Element.Physical:
+                        return false;
+                    default:
+                        return true;
+                }
             }
-            if (this.MobElement == Element.Physical && (selectedAbility.MoveElement == Element.Ice || selectedAbility.MoveElement == Element.Electric || selectedAbility.MoveElement == Element.Fire))
+            if (this.MobElement == Element.Physical)
             {
-                return true;
+                switch (selectedAbility.MoveElement)
+                {
+                    case Element.Fire:
+                    case Element.Ice:
+                    case Element.Physical:
+                        return true;
+                    default:
+                        return false;
+                }
             }
             return false;
         }
@@ -231,27 +279,88 @@ namespace PSGJ_Jan2025
         {
             //THERES GOTTA BE A BETTER WAY TO CHECK THIS BUT I CANT BE BOTHERED RIGHT NOW TO FIGURE IT OUT SO ENJOY THE SPAGHETTI
 
-            //TYPES CANNOT BE STRONG AGAINST THEMSELVES EXCEPT UNIVERSAL
-            if (this.MobElement == Element.Universal && (selectedAbility.MoveElement == Element.Fire || selectedAbility.MoveElement == Element.Ice || selectedAbility.MoveElement == Element.Electric))
+
+            if (this.MobElement == Element.Universal)
             {
-                return true;
+                switch (selectedAbility.MoveElement)
+                {
+                    case Element.Physical:
+                        return false;
+                    default:
+                        return true;
+                }
             }
-            if (this.MobElement == Element.Physical && (selectedAbility.MoveElement == Element.Physical || selectedAbility.MoveElement == Element.Universal))
+            if (this.MobElement == Element.Ice)
             {
-                return true;
+                switch (selectedAbility.MoveElement)
+                {
+                    case Element.Ice:
+                    case Element.Electric:
+                    case Element.Physical:
+                        return true;
+                    default:
+                        return false;
+                }
             }
-            if (this.MobElement == Element.Ice && (selectedAbility.MoveElement == Element.Ice || selectedAbility.MoveElement == Element.Electric))
+            if (this.MobElement == Element.Fire)
             {
-                return true;
+                switch (selectedAbility.MoveElement)
+                {
+                    case Element.Fire:
+                    case Element.Electric:
+                    case Element.Physical:
+                        return true;
+                    default:
+                        return false;
+                }
             }
-            if (this.MobElement == Element.Fire && (selectedAbility.MoveElement == Element.Fire || selectedAbility.MoveElement == Element.Ice))
+            if (this.MobElement == Element.Electric)
             {
-                return true;
+                switch (selectedAbility.MoveElement)
+                {
+                    case Element.Fire:
+                    case Element.Ice:
+                    case Element.Physical:
+                        return true;
+                    default:
+                        return false;
+                }
             }
-            if (this.MobElement == Element.Electric && (selectedAbility.MoveElement == Element.Electric || selectedAbility.MoveElement == Element.Fire))
+            if (this.MobElement == Element.Physical)
             {
-                return true;
+                switch (selectedAbility.MoveElement)
+                {
+                    case Element.Fire:
+                    case Element.Ice:
+                    case Element.Physical:
+                        return false;
+                    default:
+                        return true;
+                }
             }
+
+
+            ////TYPES CANNOT BE STRONG AGAINST THEMSELVES EXCEPT UNIVERSAL
+            //if (this.MobElement == Element.Universal && (selectedAbility.MoveElement == Element.Fire || selectedAbility.MoveElement == Element.Ice || selectedAbility.MoveElement == Element.Electric))
+            //{
+            //    return true;
+            //}
+            //if (this.MobElement == Element.Physical && (selectedAbility.MoveElement == Element.Physical || selectedAbility.MoveElement == Element.Universal))
+            //{
+            //    return true;
+            //}
+            //if (this.MobElement == Element.Ice && (selectedAbility.MoveElement == Element.Ice || selectedAbility.MoveElement == Element.Electric))
+            //{
+            //    return true;
+            //}
+            //if (this.MobElement == Element.Fire && (selectedAbility.MoveElement == Element.Fire || selectedAbility.MoveElement == Element.Ice))
+            //{
+            //    return true;
+            //}
+            //if (this.MobElement == Element.Electric && (selectedAbility.MoveElement == Element.Electric || selectedAbility.MoveElement == Element.Fire))
+            //{
+            //    return true;
+            //}
             return false;
         }
     }

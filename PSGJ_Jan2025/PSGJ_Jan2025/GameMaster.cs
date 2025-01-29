@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 
 namespace PSGJ_Jan2025
@@ -14,7 +15,7 @@ namespace PSGJ_Jan2025
     {
         public static GamePhases CurrentPhase = GamePhases.Start;
         public static GamePhases PreviousPhase = GamePhases.Start;
-        public static bool AbleToChangePhases = true;
+        public static bool AbleToChangePhases = true, GenerateAbilities = true;
         public static List<NPC> enemyWave = new List<NPC>();
         public static Task task;
         internal static int WaveNumber = 1;
@@ -22,6 +23,8 @@ namespace PSGJ_Jan2025
         public static Font thisFont = new();
         public static int selectedZone, selectedMove;
         public static CustomGameUI[] moveArr;
+        public static List<Ability> newAbilities = new List<Ability>();
+
 
         public static void ChangePhase(List<CustomGameUI> actions, Rectangle mouseRect, MouseStateExtended mouseState, Character zilla, CustomGameUI[] zones)
         {
@@ -35,13 +38,13 @@ namespace PSGJ_Jan2025
                     SpawnEnemies(mouseState);
                     break;
                 case GamePhases.SelectAbility:
-                    SelectAbility(mouseState, zones, mouseRect);
+                    SelectAbility(mouseState, actions, mouseRect);
                     break;
                 case GamePhases.PlayerTurn:
                     PlayerTurn(actions, mouseRect, mouseState);
                     break;
                 case GamePhases.SelectZone:
-                    SelectZone(zones, mouseRect, mouseState, zilla);
+                    SelectZone(actions, zones, mouseRect, mouseState, zilla);
                     break;
                 case GamePhases.EnemyTurn:
                     EnemyTurn(mouseRect, mouseState, zilla);
@@ -92,18 +95,61 @@ namespace PSGJ_Jan2025
             }
         }
 
-        public static void SelectAbility(MouseStateExtended mouseState, CustomGameUI[] abilities, Rectangle mouseRect)
+        public static void SelectAbility(MouseStateExtended mouseState, List<CustomGameUI> actions, Rectangle mouseRect)
         {
-            thisFont.FontText = "Select 1 of the 4 abilities to add them to your move set!      [Mouse click to proceed]";
-            foreach (CustomGameUI ability in abilities)
+            //thisFont.FontText = "Select 1 of the 4 abilities to add them to your move set!      [Mouse click to proceed]";
+
+            if(GenerateAbilities)
             {
-                ability.changeColor(mouseRect);
-                if (mouseState.WasButtonPressed(MouseButton.Left))
-                {
-                    ability.MoveName = "pound";
-                    CurrentPhase = GamePhases.PlayerTurn;
-                    task = ResetPhaseChangeFlag();
-                }
+                newAbilities.Add(new Ability());
+                newAbilities.Add(new Ability());
+                newAbilities.Add(new Ability());
+                newAbilities.Add(new Ability());
+
+                moveArr = actions.ToArray();
+                
+                GenerateAbilities = false;
+            }
+
+            thisFont.FontText = $"Select a move [Q. {newAbilities[0].AbilityName}]    [W. {newAbilities[1].AbilityName}]    [E. {newAbilities[2].AbilityName}]    [R. {newAbilities[3].AbilityName}]";
+
+            KeyboardState keyboardState = Keyboard.GetState();
+            
+            if (keyboardState.IsKeyDown(Keys.Q))
+            {
+                moveArr[0].ButtonAbility = newAbilities[0];
+                actions[0].ButtonAbility = newAbilities[0];
+                actions[0].ButtonAbility.BaseDamagePower = (float)(WaveNumber * .75f) * 30f;
+                GenerateAbilities = true;
+                CurrentPhase = GamePhases.PlayerTurn;
+                task = ResetPhaseChangeFlag();
+            }
+            if (keyboardState.IsKeyDown(Keys.W))
+            {
+                moveArr[1].ButtonAbility = newAbilities[1];
+                actions[1].ButtonAbility = newAbilities[1];
+                actions[1].ButtonAbility.BaseDamagePower = (float)(WaveNumber * .75f) * 30f;
+                GenerateAbilities = true;
+                CurrentPhase = GamePhases.PlayerTurn;
+                task = ResetPhaseChangeFlag();
+            }
+            if (keyboardState.IsKeyDown(Keys.E))
+            {
+                moveArr[2].ButtonAbility = newAbilities[2];
+                actions[2].ButtonAbility = newAbilities[2];
+                actions[2].ButtonAbility.BaseDamagePower = (float)(WaveNumber * .75f) * 30f;
+                GenerateAbilities = true;
+                CurrentPhase = GamePhases.PlayerTurn;
+                task = ResetPhaseChangeFlag();
+            }
+            if (keyboardState.IsKeyDown(Keys.R))
+            {
+                moveArr[3].ButtonAbility = newAbilities[3];
+                actions[3].ButtonAbility = newAbilities[3];
+                actions[3].ButtonAbility.BaseDamagePower = (float)(WaveNumber * .75f) * 30f;
+                GenerateAbilities = true;
+                CurrentPhase = GamePhases.PlayerTurn;
+                task = ResetPhaseChangeFlag();
             }
         }
 
@@ -117,7 +163,7 @@ namespace PSGJ_Jan2025
                 if (mouseRect.Intersects(action.Rect) && mouseState.WasButtonPressed(MouseButton.Left))
                 {
 
-                    moveArr = actions.ToArray();
+                    //moveArr = actions.ToArray();
                     selectedMove = Array.IndexOf(moveArr, action);
                     CurrentPhase = GamePhases.SelectZone;
                     thisFont.FontText = "you have selected a move";
@@ -125,7 +171,7 @@ namespace PSGJ_Jan2025
                 }
             }
         }
-        public static void SelectZone(CustomGameUI[] zones, Rectangle mouseRect, MouseStateExtended mouseState, Character zilla)
+        public static void SelectZone(List<CustomGameUI> actions, CustomGameUI[] zones, Rectangle mouseRect, MouseStateExtended mouseState, Character zilla)
         {
             thisFont.FontText = "select a zone for your attack";
 
@@ -137,34 +183,33 @@ namespace PSGJ_Jan2025
                     selectedZone = Array.IndexOf(zones, zone);
                     CurrentPhase = GamePhases.EnemyTurn;
                     thisFont.FontText = "attacking. . . ";
-                    PlayerTurnExecution(zones, zilla);
+                    PlayerTurnExecution(zones, zilla, actions);
                     task = ResetPhaseChangeFlag();
                 }
             }
 
         }
 
-        private async static void PlayerTurnExecution(CustomGameUI[] zones, Character zilla)
+        private async static void PlayerTurnExecution(CustomGameUI[] zones, Character zilla, List<CustomGameUI> actions)
         {
             Debug.WriteLine("running simulation");
             foreach (var enemy in enemyWave.ToList())
             {
                 if (enemy.Rect.Intersects(zones[selectedZone].Rect))
                 {
-                    Ability selectedAbility = new Ability(moveArr[selectedMove]);
+                    Ability selectedAbility = actions[selectedMove].ButtonAbility;
                     int rangeModifier = Random.Shared.Next(-WaveNumber*5, WaveNumber*3);
                     if (enemy.IsWeakTo(selectedAbility))
                     {
-                        enemy.CurrentHealth -= (int)((zilla.Attack * selectedAbility.BaseDamagePower * WaveNumber) / 100) + rangeModifier;
+                        enemy.CurrentHealth -= (int)((zilla.Attack * selectedAbility.BaseDamagePower * WaveNumber) / 75) + rangeModifier;
                         Debug.WriteLine("weak to move: " + enemy.CurrentHealth);
 
                     }
-                    else if (enemy.IsResistantTo(selectedAbility))
-                    {
-                        enemy.CurrentHealth -= (int)((zilla.Attack * selectedAbility.BaseDamagePower * WaveNumber) / 175) + rangeModifier;
-                        Debug.WriteLine("resistant to move: " + enemy.CurrentHealth);
-
-                    }
+                    //else if (enemy.IsResistantTo(selectedAbility))
+                    //{
+                    //    enemy.CurrentHealth -= (int)((zilla.Attack * selectedAbility.BaseDamagePower * WaveNumber) / 175) + rangeModifier;
+                    //    Debug.WriteLine("resistant to move: " + enemy.CurrentHealth);
+                    //}
                     else 
                     {
                         enemy.CurrentHealth -= (int)((zilla.Attack * selectedAbility.BaseDamagePower * WaveNumber) / 150) + rangeModifier;

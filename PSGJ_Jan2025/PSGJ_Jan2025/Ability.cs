@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,15 +10,30 @@ namespace PSGJ_Jan2025
     public class Ability
     {
         string abilityName;
-        int baseDamagePower;
+        float baseDamagePower;
         Element moveType;
         int moveMethodId;
+        Color elementColor;
 
         public Ability()
         {
-            abilityName = "pound";
-            baseDamagePower = 10;
-            moveType = Element.Physical;
+            int tempType = Random.Shared.Next(1,5);
+            moveType = (Element)tempType;
+            baseDamagePower = 40;
+            //int basePowerModifier = GameMaster.WaveNumber; //might need this later for determining what kind of power strength i want
+
+            abilityName = moveType.ToString();
+
+            moveMethodId = 0;
+
+            switch (moveType) 
+            { 
+                case Element.Fire: elementColor = Color.Red; break;
+                case Element.Ice: elementColor = Color.Blue; break;
+                case Element.Electric: elementColor = Color.Yellow; break;
+                case Element.Physical: elementColor = Color.Orange; break;
+                case Element.Universal: elementColor = Color.Silver; break;
+            }
         }
         public Ability(CustomGameUI button)
         {
@@ -26,7 +42,13 @@ namespace PSGJ_Jan2025
             moveType = Element.Physical;
         }
 
-        public int BaseDamagePower
+        public Ability(string name)
+        {
+            abilityName = name;
+            elementColor = Color.White;
+        }
+
+        public float BaseDamagePower
         {
             get { return baseDamagePower; }
             set { baseDamagePower = value; }
@@ -45,6 +67,11 @@ namespace PSGJ_Jan2025
         {
             get { return moveMethodId; }
             set { value = moveMethodId; }
+        }
+        public Color ElementColor
+        {
+            get { return elementColor; }
+            set { elementColor = value; }
         }
 
         //will need to add animations

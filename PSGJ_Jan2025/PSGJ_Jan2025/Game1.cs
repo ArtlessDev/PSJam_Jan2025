@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoGame.Extended.BitmapFonts;
 using MonoGame.Extended.Input;
 using System;
 using System.Collections.Generic;
@@ -116,7 +117,7 @@ namespace PSGJ_Jan2025
             {
                 foreach (var zone in zones)
                 {
-                    zone.changeColor(mouseRect);
+                    zone.changeColors(mouseRect, actions);
                 }
             }
 
@@ -137,6 +138,9 @@ namespace PSGJ_Jan2025
 
             foreach (var zone in zones)
             {
+                
+                //_spriteBatch.Draw(zone.Texture, zone.Rect, GameMaster.moveArr[GameMaster.selectedMove].ButtonAbility.ElementColor);
+                //_spriteBatch.Draw(zone.Texture, zone.Rect, actions[GameMaster.selectedMove].ButtonAbility.ElementColor);
                 _spriteBatch.Draw(zone.Texture, zone.Rect, zone.TextureColor);
             }
 
@@ -147,16 +151,16 @@ namespace PSGJ_Jan2025
 
             _spriteBatch.DrawString(mainFontText.FontSprite, mainFontText.FontText, mainFontText.FontPosition, mainFontText.FontColor);
             
-            _spriteBatch.Draw(passTurnButton.Texture, passTurnButton.Rect, passTurnButton.TextureColor);
+            //_spriteBatch.Draw(passTurnButton.Texture, passTurnButton.Rect, passTurnButton.TextureColor);
             _spriteBatch.Draw(moveOne.Texture, moveOne.Rect, moveOne.TextureColor);
             _spriteBatch.Draw(moveTwo.Texture, moveTwo.Rect, moveTwo.TextureColor);
             _spriteBatch.Draw(moveThree.Texture, moveThree.Rect, moveThree.TextureColor);
             _spriteBatch.Draw(moveFour.Texture, moveFour.Rect, moveFour.TextureColor);
 
-            _spriteBatch.DrawString(mainFontText.FontSprite, moveOne.MoveName, moveOne.TextPosition, moveOne.TextureColor);
-            _spriteBatch.DrawString(mainFontText.FontSprite, moveTwo.MoveName, moveTwo.TextPosition, moveTwo.TextureColor);
-            _spriteBatch.DrawString(mainFontText.FontSprite, moveThree.MoveName, moveThree.TextPosition, moveThree.TextureColor);
-            _spriteBatch.DrawString(mainFontText.FontSprite, moveFour.MoveName, moveFour.TextPosition, moveFour.TextureColor);
+            _spriteBatch.DrawString(mainFontText.FontSprite, moveOne.ButtonAbility.AbilityName, moveOne.TextPosition, moveOne.ButtonAbility.ElementColor);
+            _spriteBatch.DrawString(mainFontText.FontSprite, moveTwo.ButtonAbility.AbilityName, moveTwo.TextPosition, moveTwo.ButtonAbility.ElementColor);
+            _spriteBatch.DrawString(mainFontText.FontSprite, moveThree.ButtonAbility.AbilityName, moveThree.TextPosition, moveThree.ButtonAbility.ElementColor);
+            _spriteBatch.DrawString(mainFontText.FontSprite, moveFour.ButtonAbility.AbilityName, moveFour.TextPosition, moveFour.ButtonAbility.ElementColor);
 
             _spriteBatch.End();
 

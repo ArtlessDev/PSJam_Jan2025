@@ -19,6 +19,7 @@ namespace PSGJ_Jan2025
         Point size;
         Color textureColor;
         string moveName;
+        Ability buttonAbility;
 
         public CustomGameUI() 
         {
@@ -29,6 +30,7 @@ namespace PSGJ_Jan2025
             rect = new Rectangle(new Point((int)position.X, (int)position.Y), size);
             textureColor = Color.White;
             texture = GameMaster.CustomContent.Load<Texture2D>("gray-export");
+            buttonAbility = new("-----");
         }
 
         public CustomGameUI(Rectangle customRect)
@@ -75,6 +77,11 @@ namespace PSGJ_Jan2025
             get { return textureColor; }
             set{ textureColor = value; }
         }
+        public Ability ButtonAbility
+        {
+            get { return buttonAbility; }
+            set { buttonAbility = value; }
+        }
 
         public void changeColor(Rectangle mouseRect)
         {
@@ -89,12 +96,12 @@ namespace PSGJ_Jan2025
                 this.TextureColor = Color.White;
             }
         }
-        public void changeColors(Rectangle mouseRect, CustomGameUI zones)
+        public void changeColors(Rectangle mouseRect, List<CustomGameUI> actions)
         {
-            if (mouseRect.Intersects(zones.Rect))
+            if (mouseRect.Intersects(this.Rect))
             {
                 //this.Texture = Content.Load<Texture2D>("zilla");
-                this.TextureColor = Color.DarkGray;
+                this.TextureColor = actions[GameMaster.selectedMove].ButtonAbility.ElementColor;
             }
             else
             {

@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "C:\\Code\\PSJam_Jan2025\\PSGJ_Jan2025\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{EBE7F46F-C99A-44DA-918D-EE63B4AF7BEF}|PSGJ_Jan2025\\PSGJ_Jan2025.csproj|c:\\code\\psjam_jan2025\\psgj_jan2025\\psgj_jan2025\\ability.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EBE7F46F-C99A-44DA-918D-EE63B4AF7BEF}|PSGJ_Jan2025\\PSGJ_Jan2025.csproj|solutionrelative:psgj_jan2025\\ability.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{EBE7F46F-C99A-44DA-918D-EE63B4AF7BEF}|PSGJ_Jan2025\\PSGJ_Jan2025.csproj|c:\\code\\psjam_jan2025\\psgj_jan2025\\psgj_jan2025\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EBE7F46F-C99A-44DA-918D-EE63B4AF7BEF}|PSGJ_Jan2025\\PSGJ_Jan2025.csproj|solutionrelative:psgj_jan2025\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EBE7F46F-C99A-44DA-918D-EE63B4AF7BEF}|PSGJ_Jan2025\\PSGJ_Jan2025.csproj|c:\\code\\psjam_jan2025\\psgj_jan2025\\psgj_jan2025\\customgameui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EBE7F46F-C99A-44DA-918D-EE63B4AF7BEF}|PSGJ_Jan2025\\PSGJ_Jan2025.csproj|solutionrelative:psgj_jan2025\\customgameui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{EBE7F46F-C99A-44DA-918D-EE63B4AF7BEF}|PSGJ_Jan2025\\PSGJ_Jan2025.csproj|c:\\code\\psjam_jan2025\\psgj_jan2025\\psgj_jan2025\\character.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EBE7F46F-C99A-44DA-918D-EE63B4AF7BEF}|PSGJ_Jan2025\\PSGJ_Jan2025.csproj|solutionrelative:psgj_jan2025\\character.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBE7F46F-C99A-44DA-918D-EE63B4AF7BEF}|PSGJ_Jan2025\\PSGJ_Jan2025.csproj|c:\\code\\psjam_jan2025\\psgj_jan2025\\psgj_jan2025\\ability.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EBE7F46F-C99A-44DA-918D-EE63B4AF7BEF}|PSGJ_Jan2025\\PSGJ_Jan2025.csproj|solutionrelative:psgj_jan2025\\ability.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBE7F46F-C99A-44DA-918D-EE63B4AF7BEF}|PSGJ_Jan2025\\PSGJ_Jan2025.csproj|c:\\code\\psjam_jan2025\\psgj_jan2025\\psgj_jan2025\\customgameui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EBE7F46F-C99A-44DA-918D-EE63B4AF7BEF}|PSGJ_Jan2025\\PSGJ_Jan2025.csproj|solutionrelative:psgj_jan2025\\customgameui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EBE7F46F-C99A-44DA-918D-EE63B4AF7BEF}|PSGJ_Jan2025\\PSGJ_Jan2025.csproj|c:\\code\\psjam_jan2025\\psgj_jan2025\\psgj_jan2025\\gamemaster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -34,17 +34,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Ability.cs",
               "DocumentMoniker": "C:\\Code\\PSJam_Jan2025\\PSGJ_Jan2025\\PSGJ_Jan2025\\Ability.cs",
               "RelativeDocumentMoniker": "PSGJ_Jan2025\\Ability.cs",
               "ToolTip": "C:\\Code\\PSJam_Jan2025\\PSGJ_Jan2025\\PSGJ_Jan2025\\Ability.cs",
               "RelativeToolTip": "PSGJ_Jan2025\\Ability.cs",
-              "ViewState": "AgIAACsAAAAAAAAAAAAcwEQAAAAOAAAAAAAAAA==",
+              "ViewState": "AgIAABEAAAAAAAAAAAAQwCMAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-24T19:32:18.726Z",
               "EditorCaption": ""
@@ -57,32 +57,33 @@
               "RelativeDocumentMoniker": "PSGJ_Jan2025\\Font.cs",
               "ToolTip": "C:\\Code\\PSJam_Jan2025\\PSGJ_Jan2025\\PSGJ_Jan2025\\Font.cs",
               "RelativeToolTip": "PSGJ_Jan2025\\Font.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACkAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-24T14:12:25.014Z"
+              "WhenOpened": "2025-01-24T14:12:25.014Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "Character.cs",
               "DocumentMoniker": "C:\\Code\\PSJam_Jan2025\\PSGJ_Jan2025\\PSGJ_Jan2025\\Character.cs",
               "RelativeDocumentMoniker": "PSGJ_Jan2025\\Character.cs",
               "ToolTip": "C:\\Code\\PSJam_Jan2025\\PSGJ_Jan2025\\PSGJ_Jan2025\\Character.cs",
               "RelativeToolTip": "PSGJ_Jan2025\\Character.cs",
-              "ViewState": "AgIAAEgAAAAAAAAAAAAuwL4AAAAUAAAAAAAAAA==",
+              "ViewState": "AgIAABoAAAAAAAAAAAAQwIUAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-19T17:34:49.275Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "CustomGameUI.cs",
               "DocumentMoniker": "C:\\Code\\PSJam_Jan2025\\PSGJ_Jan2025\\PSGJ_Jan2025\\CustomGameUI.cs",
               "RelativeDocumentMoniker": "PSGJ_Jan2025\\CustomGameUI.cs",
               "ToolTip": "C:\\Code\\PSJam_Jan2025\\PSGJ_Jan2025\\PSGJ_Jan2025\\CustomGameUI.cs",
               "RelativeToolTip": "PSGJ_Jan2025\\CustomGameUI.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAQwB8AAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAEoAAAAAAAAAAIA7wGcAAABfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-19T15:16:56.477Z",
               "EditorCaption": ""
@@ -95,20 +96,20 @@
               "RelativeDocumentMoniker": "PSGJ_Jan2025\\GameMaster.cs",
               "ToolTip": "C:\\Code\\PSJam_Jan2025\\PSGJ_Jan2025\\PSGJ_Jan2025\\GameMaster.cs",
               "RelativeToolTip": "PSGJ_Jan2025\\GameMaster.cs",
-              "ViewState": "AgIAAIQAAAAAAAAAAAAiwMMAAAAsAAAAAAAAAA==",
+              "ViewState": "AgIAAJEAAAAAAAAAAAAEwKUAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-19T15:12:28.945Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Game1.cs",
               "DocumentMoniker": "C:\\Code\\PSJam_Jan2025\\PSGJ_Jan2025\\PSGJ_Jan2025\\Game1.cs",
               "RelativeDocumentMoniker": "PSGJ_Jan2025\\Game1.cs",
               "ToolTip": "C:\\Code\\PSJam_Jan2025\\PSGJ_Jan2025\\PSGJ_Jan2025\\Game1.cs",
               "RelativeToolTip": "PSGJ_Jan2025\\Game1.cs",
-              "ViewState": "AgIAAEwAAAAAAAAAAAAIwIAAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAH4AAAAAAAAAAADwv5kAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-19T14:53:17.134Z",
               "EditorCaption": ""
