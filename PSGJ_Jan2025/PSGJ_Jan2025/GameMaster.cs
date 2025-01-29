@@ -121,6 +121,7 @@ namespace PSGJ_Jan2025
                 actions[0].ButtonAbility = newAbilities[0];
                 actions[0].ButtonAbility.BaseDamagePower = (float)(WaveNumber * .75f) * 30f;
                 GenerateAbilities = true;
+                newAbilities.Clear();
                 CurrentPhase = GamePhases.PlayerTurn;
                 task = ResetPhaseChangeFlag();
             }
@@ -130,6 +131,7 @@ namespace PSGJ_Jan2025
                 actions[1].ButtonAbility = newAbilities[1];
                 actions[1].ButtonAbility.BaseDamagePower = (float)(WaveNumber * .75f) * 30f;
                 GenerateAbilities = true;
+                newAbilities.Clear();
                 CurrentPhase = GamePhases.PlayerTurn;
                 task = ResetPhaseChangeFlag();
             }
@@ -139,6 +141,7 @@ namespace PSGJ_Jan2025
                 actions[2].ButtonAbility = newAbilities[2];
                 actions[2].ButtonAbility.BaseDamagePower = (float)(WaveNumber * .75f) * 30f;
                 GenerateAbilities = true;
+                newAbilities.Clear();
                 CurrentPhase = GamePhases.PlayerTurn;
                 task = ResetPhaseChangeFlag();
             }
@@ -148,6 +151,7 @@ namespace PSGJ_Jan2025
                 actions[3].ButtonAbility = newAbilities[3];
                 actions[3].ButtonAbility.BaseDamagePower = (float)(WaveNumber * .75f) * 30f;
                 GenerateAbilities = true;
+                newAbilities.Clear();
                 CurrentPhase = GamePhases.PlayerTurn;
                 task = ResetPhaseChangeFlag();
             }
@@ -254,7 +258,7 @@ namespace PSGJ_Jan2025
 
             if(mouseState.WasButtonPressed(MouseButton.Left))
             {
-                if (zilla.CurrentHealth > 0 && enemyWave.Count > 0) //&& mouseRect.Intersects(this.Rect))
+                if (zilla.CurrentHealth > 0 && enemyWave.Count > 0) 
                 {
                     //
                     if(zilla.CurrentHealth < zilla.MaximumHealth)
@@ -262,11 +266,11 @@ namespace PSGJ_Jan2025
                     task = ResetPhaseChangeFlag();
                     CurrentPhase = GamePhases.PlayerTurn;
                 }
-                else if (zilla.CurrentHealth > 0 && enemyWave.Count <= 0) //&& mouseRect.Intersects(this.Rect))
+                else if (zilla.CurrentHealth > 0 && enemyWave.Count <= 0) 
                 {
                     //
                     zilla.MaximumHealth += (zilla.MaximumHealth / 10);
-                    zilla.CurrentHealth += (zilla.MaximumHealth / 8);
+                    zilla.CurrentHealth += (zilla.MaximumHealth / 5);
                     task = ResetPhaseChangeFlag();
                     CurrentPhase = GamePhases.EnemySpawn;
                 }

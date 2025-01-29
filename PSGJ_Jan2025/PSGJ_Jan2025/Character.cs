@@ -28,15 +28,15 @@ namespace PSGJ_Jan2025
         };
         public Character()
         {
-            currentHealth = 50;
-            maximumHealth = 50;
+            currentHealth = 30;
+            maximumHealth = 30;
             attack = 20;
             type = CharacterType.NPC;
         }
         public Character(CharacterType type)
         {
-            currentHealth = 50;
-            maximumHealth = 50;
+            currentHealth = 30;
+            maximumHealth = 30;
             attack = 20;
             this.type = type;
 
@@ -110,18 +110,35 @@ namespace PSGJ_Jan2025
         int zone;
         bool isGuarding, canMoveZones;
         Element mobElement;
+        bool isStrongMob;
 
         public NPC() : base()
         {
             canMoveZones = true;
-            CurrentHealth = 20 * GameMaster.WaveNumber;
-            zone = 5;
-            Rect = new Rectangle(Random.Shared.Next(192*zone, (192*zone)+192), Random.Shared.Next(32,320), 16, 16);
-            Texture = GameMaster.CustomContent.Load<Texture2D>("soldier");
             isGuarding = false;
+            int tempmobStrength = Random.Shared.Next(0, 7);
+            zone = 5;
             int tempElement = Random.Shared.Next(0, 5);
             mobElement = (Element)tempElement;
-            Debug.WriteLine(mobElement);
+
+            Debug.WriteLine(tempmobStrength);
+
+            if (tempmobStrength == 7)
+            {
+                isStrongMob = true;
+                CurrentHealth = 40 * GameMaster.WaveNumber;
+                Rect = new Rectangle(Random.Shared.Next(192 * zone, (192 * zone) + 192), Random.Shared.Next(32, 320), 32, 32);
+                Texture = GameMaster.CustomContent.Load<Texture2D>("soldier");
+                Debug.WriteLine("BIG");
+            }
+            else
+            {
+                Rect = new Rectangle(Random.Shared.Next(192 * zone, (192 * zone) + 192), Random.Shared.Next(32, 320), 16, 16);
+                CurrentHealth = 20 * GameMaster.WaveNumber;
+                Texture = GameMaster.CustomContent.Load<Texture2D>("soldier");
+                isStrongMob = false;
+
+            }
 
 
             switch (mobElement)
@@ -161,7 +178,7 @@ namespace PSGJ_Jan2025
         {
 
             //Debug.WriteLine("moving");
-            if(canMoveZones)
+            if (isStrongMob)
             {
                 zone--;
                 isGuarding = false;
@@ -172,10 +189,29 @@ namespace PSGJ_Jan2025
                 int xPosition = Random.Shared.Next(192 * zone, (192 * zone) + 192);
                 for (int transition = Rect.X; transition > xPosition; transition--)
                 {
-                    Rect = new Rectangle(transition, Rect.Y, 16, 16);
-                    await Task.Delay(25);
+                    Rect = new Rectangle(transition, Rect.Y, 32, 32);
+                    await Task.Delay(10);
                 }
                 //Debug.WriteLine(GameMaster.enemyWave.IndexOf(this) + ": " + xPosition);
+            }
+            else
+            {
+                if (canMoveZones)
+                {
+                    zone--;
+                    isGuarding = false;
+                    //this flag can be used to implement stronger enemies very easily
+                    //canMoveZones = false;
+                    //Debug.WriteLine("moving to zone number " + zone);
+
+                    int xPosition = Random.Shared.Next(192 * zone, (192 * zone) + 192);
+                    for (int transition = Rect.X; transition > xPosition; transition--)
+                    {
+                        Rect = new Rectangle(transition, Rect.Y, 16, 16);
+                        await Task.Delay(10);
+                    }
+                    //Debug.WriteLine(GameMaster.enemyWave.IndexOf(this) + ": " + xPosition);
+                }
             }
         }
         public void AttackAction(Character zilla)
@@ -183,7 +219,12 @@ namespace PSGJ_Jan2025
             isGuarding = false;
             //Debug.WriteLine("attacking");
             zilla.TakesDamage();
-            
+            if (isStrongMob)
+            {
+                zilla.TakesDamage();
+                zilla.TakesDamage();
+            }
+
         }
         public void GuardAction()
         {
@@ -212,7 +253,6 @@ namespace PSGJ_Jan2025
 
         public bool IsWeakTo(Ability selectedAbility)
         {
-            //THERES GOTTA BE A BETTER WAY TO CHECK THIS BUT I CANT BE BOTHERED RIGHT NOW TO FIGURE IT OUT SO ENJOY THE SPAGHETTI
             
             if (this.MobElement == Element.Universal)
             {
@@ -277,8 +317,6 @@ namespace PSGJ_Jan2025
 
         public bool IsResistantTo(Ability selectedAbility)
         {
-            //THERES GOTTA BE A BETTER WAY TO CHECK THIS BUT I CANT BE BOTHERED RIGHT NOW TO FIGURE IT OUT SO ENJOY THE SPAGHETTI
-
 
             if (this.MobElement == Element.Universal)
             {
@@ -339,28 +377,6 @@ namespace PSGJ_Jan2025
                 }
             }
 
-
-            ////TYPES CANNOT BE STRONG AGAINST THEMSELVES EXCEPT UNIVERSAL
-            //if (this.MobElement == Element.Universal && (selectedAbility.MoveElement == Element.Fire || selectedAbility.MoveElement == Element.Ice || selectedAbility.MoveElement == Element.Electric))
-            //{
-            //    return true;
-            //}
-            //if (this.MobElement == Element.Physical && (selectedAbility.MoveElement == Element.Physical || selectedAbility.MoveElement == Element.Universal))
-            //{
-            //    return true;
-            //}
-            //if (this.MobElement == Element.Ice && (selectedAbility.MoveElement == Element.Ice || selectedAbility.MoveElement == Element.Electric))
-            //{
-            //    return true;
-            //}
-            //if (this.MobElement == Element.Fire && (selectedAbility.MoveElement == Element.Fire || selectedAbility.MoveElement == Element.Ice))
-            //{
-            //    return true;
-            //}
-            //if (this.MobElement == Element.Electric && (selectedAbility.MoveElement == Element.Electric || selectedAbility.MoveElement == Element.Fire))
-            //{
-            //    return true;
-            //}
             return false;
         }
     }

@@ -150,6 +150,7 @@ namespace PSGJ_Jan2025
             }
 
             _spriteBatch.DrawString(mainFontText.FontSprite, mainFontText.FontText, mainFontText.FontPosition, mainFontText.FontColor);
+            _spriteBatch.DrawString(mainFontText.FontSprite, $"HP: {zilla.CurrentHealth}/{zilla.MaximumHealth}", new(8,64), mainFontText.FontColor);
             
             //_spriteBatch.Draw(passTurnButton.Texture, passTurnButton.Rect, passTurnButton.TextureColor);
             _spriteBatch.Draw(moveOne.Texture, moveOne.Rect, moveOne.TextureColor);
